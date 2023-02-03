@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": ["clientId", "statusId", "updateDate"],
+  "properties": {
+    "clientId": {
+      "type": "integer",
+      "title": "The clientId Schema",
+      "examples": [1]
+    },
+    "statusId": {
+      "type": "integer",
+      "title": "The statusId Schema",
+      "examples": [1]
+    },
+    "updateDate": {
+      "type": "string",
+      "title": "The updateDate Schema",
+      "examples": ["2023-01-01"]
+    }
+  },
+  "examples": [
+    {
+      "clientId": 1,
+      "statusId": 1,
+      "updateDate": "2023-01-01"
+    }
+  ]
+}

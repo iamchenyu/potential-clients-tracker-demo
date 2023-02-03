@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": ["firstName", "lastName", "email", "password"],
+  "not": { "required": ["id"] },
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "title": "The firstName Schema",
+      "examples": ["Test"]
+    },
+    "lastName": {
+      "type": "string",
+      "title": "The lastName Schema",
+      "examples": ["Client"]
+    },
+    "email": {
+      "type": "string",
+      "title": "The email Schema",
+      "examples": ["abc@gmail.com"]
+    },
+    "password": {
+      "type": "string",
+      "title": "The password Schema",
+      "examples": ["password"]
+    },
+    "profileUrl": {
+      "type": "string",
+      "title": "The profileUrl Schema",
+      "examples": ["www.profile.com"]
+    }
+  },
+  "examples": [
+    {
+      "firstName": "Test",
+      "lastName": "Client",
+      "email": "abc@gmail.com",
+      "password": "password",
+      "profileUrl": "www.profile.com",
+      "role": "admin"
+    }
+  ]
+}
