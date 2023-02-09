@@ -37,6 +37,7 @@ router.post("/", ensureEditorOrAdmin, async (req, res, next) => {
     }
 
     const client = await PotentialClient.create(req.body);
+
     return res.status(201).json({ client });
   } catch (e) {
     return next(e);

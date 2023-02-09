@@ -5,6 +5,7 @@
   "default": {},
   "title": "Root Schema",
   "required": ["clientId", "statusId", "updateDate"],
+  "not": { "required": ["id"] },
   "properties": {
     "clientId": {
       "type": "integer",

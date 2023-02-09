@@ -20,7 +20,6 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
-  profile_url TEXT,
   role TEXT NOT NULL
 );
 
@@ -41,7 +40,8 @@ CREATE TABLE clients (
   current_status INTEGER NOT NULL DEFAULT 1
     REFERENCES statuses ON DELETE CASCADE,
   is_enrolled BOOLEAN NOT NULL DEFAULT FALSE,
-  note TEXT NOT NULL DEFAULT ''
+  note TEXT NOT NULL DEFAULT '',
+  created_at DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 CREATE TABLE clients_statuses (

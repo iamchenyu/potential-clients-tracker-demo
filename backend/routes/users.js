@@ -4,15 +4,11 @@ const jsonschema = require("jsonschema");
 const addUserSchema = require("../schemas/addUserSchema.json");
 const editUserSchema = require("../schemas/editUserSchema.json");
 const { BadRequestError } = require("../ExpressError");
-const {
-  ensureAdmin,
-  ensureEditorOrAdmin,
-  ensureAdminOrSameUser,
-} = require("../middleware/auth");
+const { ensureAdmin, ensureAdminOrSameUser } = require("../middleware/auth");
 
 const route = express.Router();
 
-route.get("/", ensureEditorOrAdmin, async (req, res, next) => {
+route.get("/", ensureAdmin, async (req, res, next) => {
   try {
     const users = await User.getAllUsers();
     return res.json({ users });

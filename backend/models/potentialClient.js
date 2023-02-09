@@ -24,7 +24,7 @@ class PotentialClient {
   static async getClient(id) {
     const result = await db.query(
       `
-      SELECT cl.*, ch.name AS from_channel, st.name AS current_status
+      SELECT cl.*, ch.name AS from_channel_name, st.name AS current_status_name
       FROM clients AS cl 
       LEFT JOIN channels AS ch 
       ON ch.id = cl.from_channel
@@ -117,7 +117,7 @@ class PotentialClient {
       `
       DELETE FROM clients 
       WHERE id=$1 
-      RETURNING id, first_name AS firstName, last_name AS lastName
+      RETURNING id, first_name, last_name
       `,
       [id]
     );
@@ -125,6 +125,19 @@ class PotentialClient {
     if (!client) throw new NotFoundError("No such client");
 
     return client;
+  }
+
+  static async findStatusId(id) {
+    const statusId = await db.query(
+      `
+        SELECT status_id
+        FROM clients_statuses
+        WHERE id = $1
+        `,
+      [id]
+    );
+    if (!statusId) throw new NotFoundError("No such status");
+    return statusId.rows[0];
   }
 
   static async getStatusDates(clientId) {
@@ -153,29 +166,29 @@ class PotentialClient {
     return client_status.rows[0];
   }
 
-  static async updateStatusDate(id, updateDate) {
-    const result = await db.query(
-      `
-      SELECT * FROM clients_statuses WHERE id=$1
-      `,
-      [id]
-    );
+  // static async updateStatusDate(id, updateDate) {
+  //   const result = await db.query(
+  //     `
+  //     SELECT * FROM clients_statuses WHERE id=$1
+  //     `,
+  //     [id]
+  //   );
 
-    const original = result.rows[0];
-    if (!original) throw new NotFoundError("No such client/status");
+  //   const original = result.rows[0];
+  //   if (!original) throw new NotFoundError("No such client/status");
 
-    const client_status = await db.query(
-      `
-      UPDATE clients_statuses
-      SET update_date = $1
-      WHERE id = $2
-      RETURNING *
-        `,
-      [updateDate, original.id]
-    );
+  //   const client_status = await db.query(
+  //     `
+  //     UPDATE clients_statuses
+  //     SET update_date = $1
+  //     WHERE id = $2
+  //     RETURNING *
+  //       `,
+  //     [updateDate, original.id]
+  //   );
 
-    return client_status.rows[0];
-  }
+  //   return client_status.rows[0];
+  // }
 
   static async deleteStatusDate(id) {
     const client_status = await db.query(

@@ -26,11 +26,6 @@
       "type": "string",
       "title": "The password Schema",
       "examples": ["password"]
-    },
-    "profileUrl": {
-      "type": "string",
-      "title": "The profileUrl Schema",
-      "examples": ["www.profile.com"]
     }
   },
   "examples": [
@@ -39,7 +34,6 @@
       "lastName": "Client",
       "email": "abc@gmail.com",
       "password": "password",
-      "profileUrl": "www.profile.com",
       "role": "admin"
     }
   ]
