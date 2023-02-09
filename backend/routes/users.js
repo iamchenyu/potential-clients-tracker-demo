@@ -21,7 +21,7 @@ route.get("/", ensureEditorOrAdmin, async (req, res, next) => {
   }
 });
 
-route.get("/:id", ensureEditorOrAdmin, async (req, res, next) => {
+route.get("/:id", ensureAdminOrSameUser, async (req, res, next) => {
   try {
     const user = await User.getUser(req.params.id);
     return res.json({ user });

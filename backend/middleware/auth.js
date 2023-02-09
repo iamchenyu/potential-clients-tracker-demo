@@ -56,7 +56,7 @@ const ensureAdminOrSameUser = (req, res, next) => {
   try {
     if (
       res.locals.user &&
-      (res.locals.user.role === "admin" || res.locals.user.id === req.params.id)
+      (res.locals.user.role === "admin" || res.locals.user.id == req.params.id)
     ) {
       return next();
     } else {
