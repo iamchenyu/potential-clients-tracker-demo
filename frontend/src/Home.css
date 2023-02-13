@@ -1,0 +1,152 @@
+.home-wrap {
+  height: auto;
+  margin: 0 auto -80px; /* footer height + space */
+  min-height: 100%;
+  padding: 0 0 80px; /* footer height + space */
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.home-imagewrapper {
+  position: relative;
+  background-color: #472b7a;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  height: 250px;
+}
+
+#home-svg {
+  margin-top: 200px;
+  background-color: white;
+}
+
+.home-imagewrapper-logo {
+  height: 80px;
+  width: auto;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home-imagewrapper-title {
+  font-family: "Merriweather", serif;
+  font-style: italic;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #f3b427;
+  width: 100%;
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 10rem;
+  letter-spacing: 1px;
+  text-shadow: 0.1px 0.1px 3px #f3b427;
+}
+
+.home-logout {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  color: #f3b427;
+  font-size: small;
+  cursor: pointer;
+  font-style: italic;
+  font-family: "Raleway";
+  font-weight: 600;
+}
+
+.home-logout:hover {
+  text-decoration: underline;
+}
+
+.home-username {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  background: white; /* default color */
+  /* "to left" / "to right" - affects initial color */
+  background: linear-gradient(to left, white 50%, #f3b427 50%) right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
+}
+
+.home-username:hover {
+  background-position: left;
+  padding: 0px 15px;
+  border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .home-imagewrapper-title {
+    top: 40%;
+    left: 50%;
+    font-size: 3rem;
+  }
+
+  .home-imagewrapper-logo {
+    height: 60px;
+  }
+
+  #home-welcome {
+    font-size: 2.5rem;
+    width: min-content;
+  }
+
+  #home-calender {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .home-imagewrapper-title {
+    top: 40%;
+    left: 50%;
+    font-size: 2.5rem;
+  }
+
+  .home-imagewrapper-logo {
+    height: 50px;
+  }
+
+  #home-welcome {
+    font-size: 2.3rem;
+    width: min-content;
+  }
+
+  #home-calender {
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .home-imagewrapper-title {
+    top: 45%;
+    left: 50%;
+    font-size: 1.5rem;
+  }
+
+  .home-imagewrapper {
+    height: 40px;
+  }
+
+  #home-svg {
+    margin-top: 25px;
+  }
+
+  .home-imagewrapper-logo {
+    top: 35%;
+    height: 40px;
+  }
+
+  #home-welcome {
+    font-size: 1.5rem;
+    width: min-content;
+  }
+
+  #home-calender {
+    font-size: 0.7rem;
+  }
+}

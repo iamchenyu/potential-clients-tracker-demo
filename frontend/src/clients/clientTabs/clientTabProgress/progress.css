@@ -1,0 +1,132 @@
+.stepper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 30px auto 30px auto;
+  font-family: "Raleway", sans-serif;
+}
+
+.stepper_item:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.stepper_item {
+  background-color: rgba(0, 0, 0, 0.12);
+  height: 32px;
+  display: block;
+  line-height: 32px;
+  padding: 0 10px 0 16px;
+  position: relative;
+  width: 30%;
+  min-width: 200px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+  transition: 300ms linear;
+}
+
+.stepper_item:hover {
+  background-color: #ffcf1c;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.stepper_item:before {
+  background-color: rgba(0, 0, 0, 0.12);
+  -webkit-clip-path: polygon(33% 0, 100% 50%, 33% 100%, 0 100%, 0 0);
+  clip-path: polygon(33% 0, 100% 50%, 33% 100%, 0 100%, 0 0);
+  content: "";
+  position: absolute;
+  right: -15px;
+  width: 15px;
+  height: 32px;
+  transition: 300ms linear;
+}
+
+.stepper_item:hover:before {
+  background-color: #ffcf1c;
+}
+
+.stepper_item:after {
+  border-left: 8px solid #fff;
+  border-color: #fff #fff transparent;
+  border-bottom: 16px solid transparent;
+  border-top: 16px solid transparent;
+  content: "";
+  left: 0;
+  position: absolute;
+  transition: 300ms linear;
+}
+
+.stepper_item:hover:after {
+  background-color: #ffcf1c;
+}
+
+.stepper_title {
+  display: inline-block;
+  margin: 0 auto;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.success,
+.success:before {
+  background-color: rgb(107, 85, 148);
+  color: white;
+}
+
+.stepper_item_date {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.stepper_date {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: flex-start;
+  width: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+  .deal-view {
+    width: 80%;
+  }
+
+  .stepper_item {
+    width: 20%;
+  }
+
+  .stepper_item_date {
+    gap: 50px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .stepper {
+    margin: 30px 10px 30px 10px;
+  }
+
+  .deal-view {
+    width: 90%;
+  }
+
+  .stepper_item {
+    font-size: 0.95rem;
+  }
+}
+
+@media only screen and (max-width: 415px) {
+  .stepper_item {
+    min-width: 150px;
+    width: 60%;
+    font-size: 0.8rem;
+  }
+  .stepper {
+    margin: 0;
+  }
+}
