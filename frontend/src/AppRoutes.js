@@ -3,16 +3,31 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Home from "./Home";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 function AppRoutes() {
-  const [userId, setUserId] = React.useState(
-    JSON.parse(localStorage.getItem("userId"))
-  );
+  let id;
+  console.log(Cookies.get("access_token"));
+  if (Cookies.get("access_token")) {
+    id = Cookies.get("access_token").slice(
+      Cookies.get("access_token").indexOf('"id"') + 5,
+      Cookies.get("access_token").indexOf("}")
+    );
+    console.log("here: ", id);
+  } else {
+    id = null;
+  }
+
+  const [userId, setUserId] = React.useState(id);
   const navigate = useNavigate();
 
-  const handleLogin = (id) => {
+  console.log(userId);
+
+  const handleLogin = (id, remember) => {
     setUserId(id);
-    localStorage.setItem("userId", JSON.stringify(id));
+    if (remember) {
+      localStorage.setItem("userId", JSON.stringify(id));
+    }
     navigate("/");
   };
 

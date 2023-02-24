@@ -28,6 +28,11 @@ const loginLink = {
 
 export default function Login({ handleLogin }) {
   const [err, setErr] = React.useState(null);
+  const [checked, setChecked] = React.useState(false);
+
+  const handleCheckboxChange = () => {
+    setChecked(!checked);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,10 +40,12 @@ export default function Login({ handleLogin }) {
     const loginData = {
       email: data.get("email"),
       password: data.get("password"),
+      remember: checked,
     };
+    console.log(loginData);
     try {
       const { data } = await PotentialClientTrackerApi.login(loginData);
-      handleLogin(data.userId);
+      handleLogin(data.userId, data.remember);
     } catch (e) {
       setErr(e.response.data.error.message);
     }
@@ -107,7 +114,14 @@ export default function Login({ handleLogin }) {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={
+                <Checkbox
+                  name="remember"
+                  checked={checked}
+                  onChange={handleCheckboxChange}
+                  color="primary"
+                />
+              }
               label="Remember me"
             />
             <Button

@@ -4,7 +4,7 @@
   "type": "object",
   "default": {},
   "title": "Root Schema",
-  "required": ["email", "password"],
+  "required": ["email", "password", "remember"],
   "properties": {
     "email": {
       "type": "string",
@@ -15,12 +15,18 @@
       "type": "string",
       "title": "The password Schema",
       "examples": ["password"]
+    },
+    "remember": {
+      "type": "boolean",
+      "title": "The remember Schema",
+      "examples": [false]
     }
   },
   "examples": [
     {
       "email": "abc@gmail.com",
-      "password": "password"
+      "password": "password",
+      "remember": false
     }
   ]
 }

@@ -23,9 +23,18 @@ route.post("/register", async (req, res, next) => {
       .cookie(
         "access_token",
         { token, id: user.id },
-        { httpOnly: true, sameSite: "strict", signed: true }
+        {
+          // httpOnly: true,
+          sameSite: "strict",
+          signed: true,
+          maxAge: 24 * 3600000,
+        }
       )
-      .json({ message: "Registered Successfully", userId: user.id });
+      .json({
+        message: "Registered Successfully",
+        userId: user.id,
+        remember: false,
+      });
   } catch (e) {
     return next(e);
   }
@@ -40,14 +49,38 @@ route.post("/login", async (req, res, next) => {
     }
 
     const user = await User.authenticate(req.body);
+
     const token = createToken(user);
-    return res
-      .cookie(
-        "access_token",
-        { token, id: user.id },
-        { httpOnly: true, sameSite: "strict", signed: true }
-      )
-      .json({ message: "Logged In Successfully", userId: user.id });
+    if (req.body.remember) {
+      return res
+        .cookie(
+          "access_token",
+          { token, id: user.id },
+          {
+            // httpOnly: true,
+            sameSite: "strict",
+            signed: true,
+          }
+        )
+        .json({ message: "Logged In Successfully", userId: user.id });
+    } else {
+      return res
+        .cookie(
+          "access_token",
+          { token, id: user.id },
+          {
+            // httpOnly: true,
+            sameSite: "strict",
+            signed: true,
+            maxAge: 24 * 3600000,
+          }
+        )
+        .json({
+          message: "Logged In Successfully",
+          userId: user.id,
+          remember: req.body.remember,
+        });
+    }
   } catch (e) {
     return next(e);
   }
@@ -57,7 +90,7 @@ route.post("/logout", async (req, res, next) => {
   try {
     return res
       .clearCookie("access_token", {
-        httpOnly: true,
+        // httpOnly: true,
         sameSite: "strict",
         signed: true,
       })
