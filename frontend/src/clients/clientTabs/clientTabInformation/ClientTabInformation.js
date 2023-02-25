@@ -37,6 +37,7 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
     const editClientFormData = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
+      dob: data.get("dob"),
       email: data.get("email"),
       phone: data.get("phone"),
       address: data.get("address"),
@@ -47,7 +48,6 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
       note: data.get("note"),
       daycare: data.get("daycare") === "true" ? true : false,
       medicaid: data.get("medicaid") === "true" ? true : false,
-      isEnrolled: data.get("isEnrolled") === "true" ? true : false,
     };
     try {
       await PotentialClientTrackerApi.updateClient(

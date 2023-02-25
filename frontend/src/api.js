@@ -21,6 +21,10 @@ class PotentialClientTrackerApi {
     return await axios.get(`/clients/${id}`);
   }
 
+  static async searchClient(data) {
+    return await axios.post("/clients/search", data);
+  }
+
   static async addClient(data) {
     return await axios.post("/clients", data);
   }

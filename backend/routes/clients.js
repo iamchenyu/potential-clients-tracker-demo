@@ -27,6 +27,15 @@ router.get("/:id", ensureLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post("/search", ensureLoggedIn, async (req, res, next) => {
+  try {
+    const client = await PotentialClient.searchClient(req.body);
+    return res.json({ client });
+  } catch (e) {
+    return next(e);
+  }
+});
+
 router.post("/", ensureEditorOrAdmin, async (req, res, next) => {
   try {
     const validator = jsonschema.validate(req.body, clientSchema);

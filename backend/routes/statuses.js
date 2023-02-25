@@ -23,9 +23,17 @@ route.post("/", ensureEditorOrAdmin, async (req, res, next) => {
     const result = await PotentialClient.addStatusDate(req.body);
 
     // update client's current status
-    const client = await PotentialClient.update(result.client_id, {
-      current_status: result.status_id,
-    });
+    let client;
+    if (req.body.statusId == 12) {
+      client = await PotentialClient.update(result.client_id, {
+        current_status: result.status_id,
+        is_enrolled: true,
+      });
+    } else {
+      client = await PotentialClient.update(result.client_id, {
+        current_status: result.status_id,
+      });
+    }
 
     return res.json({ client });
   } catch (e) {

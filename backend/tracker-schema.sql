@@ -27,6 +27,7 @@ CREATE TABLE clients (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL DEFAULT '',
   last_name TEXT NOT NULL DEFAULT '',
+  dob TEXT NOT NULL DEFAULT '',
   email TEXT NOT NULL DEFAULT 'placeholder@fake.com',
   phone TEXT NOT NULL DEFAULT '000-000-0000',
   address TEXT NOT NULL DEFAULT '',

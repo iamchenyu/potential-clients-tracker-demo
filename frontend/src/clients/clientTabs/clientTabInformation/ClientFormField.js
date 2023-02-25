@@ -27,12 +27,59 @@ export default function ClientFormField({ client, disabled }) {
         <TextField
           margin="normal"
           disabled={disabled}
+          id="dob"
+          label="Date of Birth"
+          name="dob"
+          defaultValue={client.dob}
+          sx={{ width: "30%" }}
+        />
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <TextField
+          margin="normal"
+          disabled={disabled}
           id="phone"
           label="Phone Number"
           name="phone"
           defaultValue={client.phone}
-          sx={{ width: "30%" }}
+          sx={{ width: "45%" }}
         />
+        <TextField
+          margin="normal"
+          disabled={disabled}
+          id="email"
+          label="Email Address"
+          name="email"
+          defaultValue={client.email}
+          sx={{ width: "45%" }}
+        />
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <TextField
+          margin="normal"
+          disabled={disabled}
+          id="address"
+          label="Address"
+          name="address"
+          defaultValue={client.address}
+          sx={{ width: "45%" }}
+        />
+        <TextField
+          margin="normal"
+          select
+          id="channel"
+          disabled={disabled}
+          label="How did you hear about us?"
+          name="channel"
+          defaultValue={client.from_channel}
+          sx={{ width: "45%" }}
+        >
+          {channels.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
@@ -78,58 +125,7 @@ export default function ClientFormField({ client, disabled }) {
           <MenuItem value={false}>No</MenuItem>
         </TextField>
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <TextField
-          margin="normal"
-          disabled={disabled}
-          id="email"
-          label="Email Address"
-          name="email"
-          defaultValue={client.email}
-          sx={{ width: "45%" }}
-        />
 
-        <TextField
-          margin="normal"
-          disabled={disabled}
-          id="address"
-          label="Address"
-          name="address"
-          defaultValue={client.address}
-          sx={{ width: "45%" }}
-        />
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <TextField
-          margin="normal"
-          select
-          id="channel"
-          disabled={disabled}
-          label="How did you hear about us?"
-          name="channel"
-          defaultValue={client.from_channel}
-          sx={{ width: "45%" }}
-        >
-          {channels.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          margin="normal"
-          select
-          id="isEnrolled"
-          disabled={disabled}
-          label="Is Enrolled?"
-          name="isEnrolled"
-          defaultValue={client.is_enrolled}
-          sx={{ width: "45%" }}
-        >
-          <MenuItem value={true}>Yes</MenuItem>
-          <MenuItem value={false}>No</MenuItem>
-        </TextField>
-      </Box>
       <TextField
         margin="normal"
         disabled={disabled}

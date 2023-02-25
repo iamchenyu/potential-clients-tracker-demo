@@ -46,12 +46,40 @@ class PotentialClient {
     return client;
   }
 
+  static async searchClient({ searchTerm }) {
+    const result = await db.query(
+      `
+      SELECT cl.*, ch.name AS from_channel_name, st.name AS current_status_name
+      FROM clients AS cl 
+      LEFT JOIN channels AS ch 
+      ON ch.id = cl.from_channel
+      LEFT JOIN statuses AS st
+      ON st.id = cl.current_status
+      WHERE cl.first_name ILIKE $1 OR cl.last_name ILIKE $1
+      `,
+      [`%${searchTerm}%`]
+    );
+
+    let clients = result.rows;
+
+    if (!clients) throw new NotFoundError("No such client");
+
+    // for (client in clients) {
+
+    // }
+
+    // const client_status = await this.getStatusDates(client.id);
+
+    // client = { ...client, status_updated_dates: client_status };
+
+    return clients;
+  }
+
   static async create(data) {
     const jsToSql = {
       firstName: "first_name",
       lastName: "last_name",
       channel: "from_channel",
-      isEnrolled: "is_enrolled",
     };
 
     const cols = Object.keys(data)
@@ -90,7 +118,6 @@ class PotentialClient {
       firstName: "first_name",
       lastName: "last_name",
       channel: "from_channel",
-      isEnrolled: "is_enrolled",
     });
 
     const result = await db.query(

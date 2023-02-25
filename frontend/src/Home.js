@@ -54,6 +54,8 @@ const Home = ({ userId, handleLogout }) => {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    paddingLeft: "0 !important",
+    paddingRight: "0 !important",
   };
 
   const homeCopyright = {

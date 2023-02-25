@@ -28,34 +28,42 @@ const status = [
   },
   {
     value: "4",
-    label: "Application Submission",
+    label: "Applying for Green Card",
   },
   {
     value: "5",
-    label: "Phone Screening",
+    label: "Applying for Medicaid",
   },
   {
     value: "6",
-    label: "Interview",
+    label: "Daycare Application Submission",
   },
   {
     value: "7",
-    label: "Application Approved",
+    label: "Phone Screening",
   },
   {
     value: "8",
-    label: "Application Denied",
+    label: "Interview",
   },
   {
     value: "9",
-    label: "Appealing",
+    label: "Daycare Application Approved",
   },
   {
     value: "10",
-    label: "Enrolled",
+    label: "Daycare Application Denied",
   },
   {
     value: "11",
+    label: "Daycare Application Appealing",
+  },
+  {
+    value: "12",
+    label: "Enrolled",
+  },
+  {
+    value: "13",
     label: "Not To Proceed",
   },
 ];

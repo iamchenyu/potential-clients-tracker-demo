@@ -24,28 +24,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function AddClient({ open, handleCancel }) {
   const [err, setErr] = React.useState(null);
+  const [formData, setFormData] = React.useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const addClientFormData = {
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      email: data.get("email"),
-      phone: data.get("phone"),
-      address: data.get("address"),
-      citizenship: data.get("citizenship"),
-      channel: data.get("channel"),
-      physician: data.get("physician"),
-      diagnosis: data.get("diagnosis"),
-      note: data.get("note"),
-      daycare: data.get("daycare") === "true" ? true : false,
-      medicaid: data.get("medicaid") === "true" ? true : false,
-      isEnrolled: data.get("isEnrolled") === "true" ? true : false,
-    };
-    console.log(addClientFormData);
     try {
-      await PotentialClientTrackerApi.addClient(addClientFormData);
+      await PotentialClientTrackerApi.addClient(formData);
       window.location.reload(false);
     } catch (e) {
       setErr(e.response.data.error.message);
@@ -102,7 +86,7 @@ export default function AddClient({ open, handleCancel }) {
       </DialogTitle>
       <DialogContent>
         <Box component="form" onSubmit={handleSubmit}>
-          <AddClientField />
+          <AddClientField setFormData={setFormData} />
 
           <DialogActions sx={editFormButtons}>
             <Button onClick={handleCancel}>Cancel</Button>

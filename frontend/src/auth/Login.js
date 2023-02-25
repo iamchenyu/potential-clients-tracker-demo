@@ -42,7 +42,6 @@ export default function Login({ handleLogin }) {
       password: data.get("password"),
       remember: checked,
     };
-    console.log(loginData);
     try {
       const { data } = await PotentialClientTrackerApi.login(loginData);
       handleLogin(data.userId, data.remember);

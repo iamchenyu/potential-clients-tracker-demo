@@ -24,7 +24,7 @@ route.post("/register", async (req, res, next) => {
         "access_token",
         { token, id: user.id },
         {
-          // httpOnly: true,
+          httpOnly: true,
           sameSite: "strict",
           signed: true,
           maxAge: 24 * 3600000,
@@ -57,19 +57,23 @@ route.post("/login", async (req, res, next) => {
           "access_token",
           { token, id: user.id },
           {
-            // httpOnly: true,
+            httpOnly: true,
             sameSite: "strict",
             signed: true,
           }
         )
-        .json({ message: "Logged In Successfully", userId: user.id });
+        .json({
+          message: "Logged In Successfully",
+          userId: user.id,
+          remember: req.body.remember,
+        });
     } else {
       return res
         .cookie(
           "access_token",
           { token, id: user.id },
           {
-            // httpOnly: true,
+            httpOnly: true,
             sameSite: "strict",
             signed: true,
             maxAge: 24 * 3600000,
@@ -90,7 +94,7 @@ route.post("/logout", async (req, res, next) => {
   try {
     return res
       .clearCookie("access_token", {
-        // httpOnly: true,
+        httpOnly: true,
         sameSite: "strict",
         signed: true,
       })
