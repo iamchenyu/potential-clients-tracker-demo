@@ -41,7 +41,13 @@ class PotentialClient {
 
     const client_status = await this.getStatusDates(id);
 
-    client = { ...client, status_updated_dates: client_status };
+    // const client_updates = await this.getAllCommentsByClient(id);
+
+    client = {
+      ...client,
+      status_updated_dates: client_status,
+      // updates: client_updates,
+    };
 
     return client;
   }
@@ -63,14 +69,6 @@ class PotentialClient {
     let clients = result.rows;
 
     if (!clients) throw new NotFoundError("No such client");
-
-    // for (client in clients) {
-
-    // }
-
-    // const client_status = await this.getStatusDates(client.id);
-
-    // client = { ...client, status_updated_dates: client_status };
 
     return clients;
   }
@@ -154,6 +152,10 @@ class PotentialClient {
     return client;
   }
 
+  /*********************************************************************************************/
+  /***************************************STATUS***********************************************/
+  /*********************************************************************************************/
+
   static async findStatusId(id) {
     const statusId = await db.query(
       `
@@ -230,6 +232,89 @@ class PotentialClient {
       throw new NotFoundError("No such client/status");
 
     return client_status.rows[0];
+  }
+
+  /*********************************************************************************************/
+  /***************************************UPDATES***********************************************/
+  /*********************************************************************************************/
+
+  static async getAllCommentsByClient(clientId) {
+    const results = await db.query(
+      `
+    SELECT updates.id, updates.user_id,updates.comment, updates. commented_at, clients.first_name AS client_first_name, clients.last_name AS client_last_name, users.email, users.first_name AS user_first_name, users.last_name AS user_last_name
+    FROM updates 
+    LEFT JOIN clients 
+    ON updates.client_id = clients.id
+    LEFT JOIN users
+    ON updates.user_id = users.id
+    WHERE client_id = $1
+    ORDER BY updates.commented_at DESC
+    `,
+      [clientId]
+    );
+
+    const comments = results.rows;
+
+    if (!comments) throw new NotFoundError("No such comments");
+
+    return comments;
+  }
+
+  static async createComment(data) {
+    const jsToSql = {
+      clientId: "client_id",
+      userId: "user_id",
+    };
+
+    const cols = Object.keys(data)
+      .map((key) => jsToSql[key] || key)
+      .join(", ");
+    const valIdx = Object.keys(data)
+      .map((key, idx) => `$${idx + 1}`)
+      .join(", ");
+
+    const result = await db.query(
+      `
+    INSERT INTO updates (${cols})
+    VALUES (${valIdx})
+    RETURNING *`,
+      [...Object.values(data)]
+    );
+
+    let comment = result.rows[0];
+
+    return comment;
+  }
+
+  // static async updateComment(id, { comment }) {
+  //   const result = await db.query(
+  //     `
+  //       UPDATE updates
+  //       SET comment = $1
+  //       WHERE id = $2
+  //       RETURNING *
+  //   `,
+  //     [comment, id]
+  //   );
+
+  //   let update = result.rows[0];
+
+  //   if (!update) throw new NotFoundError("No such comment");
+
+  //   return update;
+  // }
+
+  static async deleteComment(id) {
+    const result = await db.query(
+      `
+      DELETE FROM updates WHERE id = $1 RETURNING *
+      `,
+      [+id]
+    );
+
+    if (!result.rows[0]) throw new NotFoundError("No such comment");
+
+    return result.rows[0];
   }
 }
 

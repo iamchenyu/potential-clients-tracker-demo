@@ -5,6 +5,7 @@ const clientsRoutes = require("./routes/clients");
 const usersRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const statusRoutes = require("./routes/statuses");
+const updatesRoutes = require("./routes/updates");
 const { authenticateJWT } = require("./middleware/auth");
 const { COOKIE_SECRET } = require("./config");
 
@@ -18,6 +19,7 @@ app.use("/clients", clientsRoutes);
 app.use("/users", usersRoutes);
 app.use("/auth", authRoutes);
 app.use("/status", statusRoutes);
+app.use("/updates", updatesRoutes);
 
 app.use((req, res, next) => {
   return next(new NotFoundError("Page not found"));

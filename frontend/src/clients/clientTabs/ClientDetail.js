@@ -12,6 +12,7 @@ import AlertBanner from "../../AlertBanner";
 import ClientDetailTabBar from "./ClientDetailTabBar";
 import ClientDetailTabBarInformation from "./clientTabInformation/ClientTabInformation";
 import ClientDetailTabBarProgress from "./clientTabProgress/ClientDetailTabBarProgress";
+import ClientDetailTabBarUpdates from "./clientTabUpdates/ClientDetailTabBarUpdates";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -19,7 +20,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ClientDetail({ open, handleCancel, client }) {
   const [err, setErr] = React.useState(null);
-  const [tab, setTab] = React.useState("progress");
+  const [tab, setTab] = React.useState("updates");
 
   const handleTabChange = (value) => {
     setTab(value);
@@ -34,8 +35,8 @@ export default function ClientDetail({ open, handleCancel, client }) {
       return <ClientDetailTabBarInformation client={client} getErr={getErr} />;
     } else if (tab === "progress") {
       return <ClientDetailTabBarProgress client={client} getErr={getErr} />;
-    } else {
-      //
+    } else if (tab === "updates") {
+      return <ClientDetailTabBarUpdates client={client} getErr={getErr} />;
     }
   };
 

@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
 export default function ClientDetailTabBar({ handleTabChange }) {
-  const [value, setValue] = React.useState("progress");
+  const [value, setValue] = React.useState("updates");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -14,6 +14,7 @@ export default function ClientDetailTabBar({ handleTabChange }) {
   const tabColors = {
     color: "#fff",
   };
+
   return (
     <Box sx={{ width: "100%" }}>
       <Tabs
@@ -22,6 +23,7 @@ export default function ClientDetailTabBar({ handleTabChange }) {
         textColor="secondary"
         indicatorColor="secondary"
       >
+        <Tab value="updates" label="Updates" sx={tabColors} />
         <Tab value="progress" label="Progress" sx={tabColors} />
         <Tab value="information" label="Information" sx={tabColors} />
       </Tabs>

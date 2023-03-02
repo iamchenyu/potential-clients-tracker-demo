@@ -10,8 +10,6 @@ function AppRoutes() {
   );
   const navigate = useNavigate();
 
-  console.log(userId);
-
   React.useEffect(() => {
     if (
       localStorage.getItem("initDate") &&
@@ -21,6 +19,7 @@ function AppRoutes() {
       console.log("user has been logged out");
       localStorage.removeItem("userId");
       localStorage.removeItem("initDate");
+      window.location.reload(false);
     }
   }, []);
 

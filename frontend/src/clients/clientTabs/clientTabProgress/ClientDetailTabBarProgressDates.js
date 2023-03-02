@@ -18,7 +18,7 @@ const ClientDetailTabBarProgressDates = ({
         <div className="stepper">
           {status.map((s) => (
             <ClientDetailTabBarProgressDatesMap
-              key={s.id}
+              key={s.value}
               s={s}
               client={client}
               updateClient={updateClient}

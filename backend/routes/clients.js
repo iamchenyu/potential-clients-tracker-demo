@@ -27,6 +27,15 @@ router.get("/:id", ensureLoggedIn, async (req, res, next) => {
   }
 });
 
+router.get("/:id/updates", ensureLoggedIn, async (req, res, next) => {
+  try {
+    const updates = await PotentialClient.getAllCommentsByClient(req.params.id);
+    return res.json({ updates });
+  } catch (e) {
+    return next(e);
+  }
+});
+
 router.post("/search", ensureLoggedIn, async (req, res, next) => {
   try {
     const client = await PotentialClient.searchClient(req.body);

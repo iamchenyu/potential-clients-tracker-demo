@@ -44,6 +44,8 @@ const Home = ({ userId, handleLogout }) => {
     fetchUser(userId);
   }, []);
 
+  console.log("clients:", clients);
+
   const homeContainer = {
     marginTop: 5,
     width: "80%",

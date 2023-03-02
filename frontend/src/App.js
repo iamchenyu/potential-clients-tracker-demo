@@ -1,6 +1,6 @@
 import * as React from "react";
 import theme from "./Theme";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import AppRoutes from "./AppRoutes";
 
 function App() {

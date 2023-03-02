@@ -5,13 +5,14 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { Typography } from "@mui/material";
-import PotentialClientTrackerApi from "../../../api";
+import PotentialClientTrackerApi from "./api";
 
-export default function ClientDetailDelete({ open, handleClose, clientId }) {
-  const handleDelete = async () => {
-    await PotentialClientTrackerApi.deleteClient(clientId);
-    window.location.reload(false);
-  };
+export default function DeleteConfirmation({
+  open,
+  handleClose,
+  deleteObject,
+  handleDelete,
+}) {
   const confirmMsg = {
     mt: 3,
     letterSpacing: "0.5px",
@@ -22,7 +23,7 @@ export default function ClientDetailDelete({ open, handleClose, clientId }) {
       <DialogContent sx={{ py: "10px" }}>
         <DialogContentText sx={{ py: "10px" }}>
           <Typography variant="h7" sx={confirmMsg}>
-            Are you sure you want to delete this client?
+            Are you sure you want to delete this {deleteObject}?
           </Typography>
         </DialogContentText>
       </DialogContent>

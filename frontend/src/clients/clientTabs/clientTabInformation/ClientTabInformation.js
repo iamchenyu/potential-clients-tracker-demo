@@ -3,7 +3,7 @@ import { Button, DialogActions, Box, DialogContent } from "@mui/material";
 import PotentialClientTrackerApi from "../../../api";
 import DialogTitle from "@mui/material/DialogTitle";
 import ClientFormField from "./ClientFormField";
-import ClientDetailDelete from "./ClientInDetailDelete";
+import DeleteConfirmation from "../../../DeleteConfirmation";
 import AppContext from "../../../AppContext";
 
 const ClientDetailTabBarInformation = ({ client, getErr }) => {
@@ -29,6 +29,11 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
     } else {
       setIsDisabled(!isDisabled);
     }
+  };
+
+  const handleDelete = async () => {
+    await PotentialClientTrackerApi.deleteClient(client.id);
+    window.location.reload(false);
   };
 
   const handleSubmit = async (event) => {
@@ -122,10 +127,11 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
           </DialogActions>
         </Box>
       </DialogContent>
-      <ClientDetailDelete
+      <DeleteConfirmation
         open={open}
         handleClose={handleClose}
-        clientId={client.id}
+        deleteObject="client"
+        handleDelete={handleDelete}
       />
     </>
   );

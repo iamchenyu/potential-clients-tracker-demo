@@ -20,6 +20,9 @@ class PotentialClientTrackerApi {
   static async getClient(id) {
     return await axios.get(`/clients/${id}`);
   }
+  static async getUpdatesByClient(id) {
+    return await axios.get(`/clients/${id}/updates`);
+  }
 
   static async searchClient(data) {
     return await axios.post("/clients/search", data);
@@ -35,6 +38,14 @@ class PotentialClientTrackerApi {
 
   static async deleteClient(id) {
     return await axios.delete(`/clients/${id}`);
+  }
+
+  static async addComment(data) {
+    return await axios.post("/updates", data);
+  }
+
+  static async deleteComment(id, data) {
+    return await axios.delete(`/updates/${id}`, data);
   }
 
   static async addStatus(data) {

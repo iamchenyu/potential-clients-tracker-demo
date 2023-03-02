@@ -111,3 +111,9 @@ VALUES (1, 1, '12/22/2022'),
        (3, 3, '11/21/2022'),
        (4, 1, '02/01/2023'),
        (4, 2, '02/03/2023');
+
+INSERT INTO updates (user_id, client_id, comment)
+VALUES (1, 1, 'The potential client would like to schedule an onsite visit after discussing with his family'),
+       (2, 2, 'The potential client has no medicaid but is considering self-pay option'),
+       (1, 3, 'He is asking information for his blind dad'),
+       (2, 4, 'Low probability of enrolling in our program')

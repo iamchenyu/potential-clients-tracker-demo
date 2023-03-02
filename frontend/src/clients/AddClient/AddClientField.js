@@ -26,8 +26,6 @@ export default function AddClientField({ setFormData }) {
     setFormData(formFields);
   };
 
-  console.log(formFields);
-
   return (
     <>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
