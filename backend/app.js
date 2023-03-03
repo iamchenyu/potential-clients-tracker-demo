@@ -14,7 +14,8 @@ const app = express();
 
 //This will create a middleware.
 //When you navigate to the root page, it would use the built react-app
-app.use(express.static(path.resolve(__dirname, "./frontend/build")));
+app.use(express.static(path.join(__dirname, "frontend/build")));
+console.log(path.join(__dirname, "../frontend/build"));
 
 app.use(cookieParser(COOKIE_SECRET));
 app.use(express.json());
