@@ -15,9 +15,6 @@ const app = express();
 //This will create a middleware.
 //When you navigate to the root page, it would use the built react-app
 app.use(express.static(path.join(__dirname, "public")));
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 
 app.use(cookieParser(COOKIE_SECRET));
 app.use(express.json());
@@ -39,6 +36,10 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
 
   return res.status(status).json({ error: { message, status } });
+});
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 module.exports = app;

@@ -1,7 +1,7 @@
-DROP DATABASE clients_tracker;
-CREATE DATABASE clients_tracker;
+-- DROP DATABASE clients_tracker;
+-- CREATE DATABASE clients_tracker;
 
-\connect clients_tracker
+-- \connect clients_tracker
 
 \i tracker-schema.sql
 
