@@ -8,6 +8,7 @@ const statusRoutes = require("./routes/statuses");
 const updatesRoutes = require("./routes/updates");
 const { authenticateJWT } = require("./middleware/auth");
 const { COOKIE_SECRET } = require("./config");
+const path = require("path");
 
 const app = express();
 
