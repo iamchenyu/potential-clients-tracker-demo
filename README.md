@@ -196,6 +196,8 @@ Chenyu Wang - hellochenyuw@gmail.com
 
 Project Link: [https://github.com/iamchenyu/potential-clients-tracker-app](https://github.com/iamchenyu/potential-clients-tracker-app/issues)
 
+Try it out: https://potential-clients-tracker.herokuapp.com/ (Heroku App)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
