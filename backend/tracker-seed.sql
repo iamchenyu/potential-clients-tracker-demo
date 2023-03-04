@@ -3,7 +3,7 @@
 
 -- \connect clients_tracker
 
-\i tracker-schema.sql
+\i backend/tracker-schema.sql
 
 INSERT INTO statuses (name)
 VALUES ('Initial Contact'), 
