@@ -162,9 +162,9 @@ Browser the DEMO by registering a new user or using the login information below:
 - [x] Add a new client
 - [x] Map clients' journey
 - [ ] Future Features
-  - [ ] Sort & Filter clients based on user needs
+  - [x] Sort & Filter clients based on user needs
   - [ ] Group clients based on different categories, such as marketing channels and status and generate analysis charts
-  - [ ] Allow users to comment on each client for the updates
+  - [x] Allow users to comment on each client for the updates
   - [ ] Email notifications to users
 
 See the [open issues](https://github.com/iamchenyu/potential-clients-tracker-app/issues) for a full list of proposed features (and known issues).
