@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/iamchenyu/potential-clients-tracker-app">
+  <a href="https://potential-clients-tracker.herokuapp.com/">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -26,7 +26,7 @@ follow up on this customer”, “what the conversion rate is for the social med
 so on to help the staff to connect with the customers easily and convert them to
 customers smoothly.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>View Demo »</strong></a>
+    <a href="https://potential-clients-tracker.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
     <br />
 </div>
