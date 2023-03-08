@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS clients CASCADE;
 DROP TABLE IF EXISTS channels CASCADE;
 DROP TABLE IF EXISTS statuses CASCADE;
 DROP TABLE IF EXISTS clients_statuses CASCADE;
+DROP TABLE IF EXISTS updates CASCADE;
 
 CREATE TABLE channels (
   id SERIAL PRIMARY KEY,
@@ -20,7 +21,8 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
-  role TEXT NOT NULL
+  role TEXT NOT NULL,
+  reset TEXT
 );
 
 CREATE TABLE clients (

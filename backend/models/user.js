@@ -12,14 +12,28 @@ class User {
     return users.rows;
   }
 
-  static async getUser(id) {
+  static async getUser(filter) {
+    const key = Object.keys(filter)[0];
+    const value = Object.values(filter)[0];
+
     const user = await db.query(
-      `SELECT id, first_name, last_name, email, role FROM users WHERE id=$1`,
-      [id]
+      `SELECT id, first_name, last_name, email, role FROM users WHERE ${key}=$1`,
+      [value]
     );
     if (user.rows.length === 0) throw new NotFoundError("No such user");
     return user.rows[0];
   }
+
+  // static async getUserByEmail(email) {
+  //   const user = await db.query(
+  //     `SELECT id, first_name, last_name, email, role FROM users WHERE email=$1`,
+  //     [email]
+  //   );
+
+  //   if (!user.rows) throw new NotFoundError("No such user");
+
+  //   return user.rows[0];
+  // }
 
   static async register({ email, password, firstName, lastName, role }) {
     const hashed_pwd = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
@@ -49,6 +63,10 @@ class User {
   }
 
   static async update(id, data) {
+    if ("password" in data) {
+      data.password = await bcrypt.hash(data.password, BCRYPT_WORK_FACTOR);
+    }
+
     const { cols, vals } = sqlUpdateHelper(data, {
       firstName: "first_name",
       lastName: "last_name",
@@ -59,10 +77,12 @@ class User {
         UPDATE users
         SET ${cols}
         WHERE id = $${vals.length + 1}
-        RETURNING id, first_name, last_name, email, role
+        RETURNING id, first_name, last_name, email, role, reset
     `,
       [...vals, id]
     );
+
+    console.log("updated: ", user);
 
     if (!user.rows[0]) throw new NotFoundError("No such user");
 

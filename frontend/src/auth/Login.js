@@ -17,18 +17,18 @@ import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
 import Copyright from "../helper/copyright";
 
-const loginLink = {
-  textDecoration: "none",
-  fontStyle: "italic",
-  fontSize: "small",
-  "&:hover": {
-    textDecoration: "underline",
-  },
-};
-
 export default function Login({ handleLogin }) {
   const [err, setErr] = React.useState(null);
   const [checked, setChecked] = React.useState(false);
+
+  const loginLink = {
+    textDecoration: "none",
+    fontStyle: "italic",
+    fontSize: "small",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  };
 
   const handleCheckboxChange = () => {
     setChecked(!checked);
@@ -134,16 +134,9 @@ export default function Login({ handleLogin }) {
             >
               Log In
             </Button>
-            <Grid container sx={{ justifyContent: "center" }}>
-              <Grid item>
-                <Link href="/register" variant="body2" sx={loginLink}>
-                  {"Don't have an account? Register here"}
-                </Link>
-              </Grid>
-            </Grid>
-            {/* <Grid container>
+            <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2" sx={loginLink}>
+                <Link href="/forgot-password" variant="body2" sx={loginLink}>
                   Forgot password?
                 </Link>
               </Grid>
@@ -152,7 +145,7 @@ export default function Login({ handleLogin }) {
                   {"Don't have an account? Register here"}
                 </Link>
               </Grid>
-            </Grid> */}
+            </Grid>
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />

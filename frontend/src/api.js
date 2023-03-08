@@ -13,6 +13,14 @@ class PotentialClientTrackerApi {
     return await axios.post("/auth/register", data);
   }
 
+  static async sendResetEmail(data) {
+    return await axios.post("/auth/forgot-password", data);
+  }
+
+  static async resetPassword({ token }, data) {
+    return await axios.post(`/auth/reset-password/${token}`, data);
+  }
+
   static async getAllClients() {
     return await axios.get("/clients");
   }

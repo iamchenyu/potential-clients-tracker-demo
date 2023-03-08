@@ -2,6 +2,8 @@ import * as React from "react";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import Home from "./Home";
+import ForgotPassword from "./auth/ForgotPassword";
+import ResetPassword from "./auth/ResetPassword";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 function AppRoutes() {
@@ -56,6 +58,8 @@ function AppRoutes() {
             element={<Register handleLogin={handleLogin} />}
           />
           <Route path="/login" element={<Login handleLogin={handleLogin} />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </>
       )}

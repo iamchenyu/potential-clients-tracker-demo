@@ -4,7 +4,12 @@ const jsonschema = require("jsonschema");
 const addUserSchema = require("../schemas/addUserSchema.json");
 const loginUserSchema = require("../schemas/loginUserSchema.json");
 const { BadRequestError } = require("../ExpressError");
-const createToken = require("../helper/createToken");
+const {
+  createToken,
+  createResetToken,
+  verifyResetToken,
+} = require("../helper/token");
+const sendEmail = require("../helper/sendEmail");
 
 const route = express.Router();
 
@@ -99,6 +104,41 @@ route.post("/logout", async (req, res, next) => {
         signed: true,
       })
       .json({ message: "Logged Out Successfully" });
+  } catch (e) {
+    return next(e);
+  }
+});
+
+route.post("/forgot-password", async (req, res, next) => {
+  try {
+    const user = await User.getUser({ email: req.body.email });
+    const resetToken = createResetToken(user);
+    const updatedUser = await User.update(user.id, { reset: resetToken });
+    console.log(updatedUser);
+    sendEmail(user, resetToken);
+    return res.json({ message: "Check your email" });
+  } catch (e) {
+    return next(e);
+  }
+});
+
+route.post("/reset-password/:token", async (req, res, next) => {
+  try {
+    const token = req.params.token;
+    const newPassword = req.body.password;
+
+    if (token) {
+      verifyResetToken(token);
+    }
+
+    const user = await User.getUser({ reset: token });
+
+    await User.update(user.id, {
+      password: newPassword,
+      reset: null,
+    });
+
+    return res.json({ message: "Password updated successfully" });
   } catch (e) {
     return next(e);
   }

@@ -19,7 +19,8 @@ route.get("/", ensureAdmin, async (req, res, next) => {
 
 route.get("/:id", ensureAdminOrSameUser, async (req, res, next) => {
   try {
-    const user = await User.getUser(req.params.id);
+    console.log(req.params.id);
+    const user = await User.getUser({ id: req.params.id });
     return res.json({ user });
   } catch (e) {
     return next(e);

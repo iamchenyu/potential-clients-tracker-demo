@@ -1,0 +1,71 @@
+import * as React from "react";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import { Link } from "@mui/material";
+import PotentialClientTrackerApi from "../api";
+
+export default function AlertDialog({
+  type,
+  open,
+  email,
+  setErr,
+  title,
+  description1,
+  description2,
+  handleClose,
+}) {
+  const handleResendLink = async () => {
+    try {
+      const { data } = await PotentialClientTrackerApi.sendResetEmail({
+        email,
+      });
+      console.log(data);
+    } catch (e) {
+      setErr(e.response.data.error.message);
+    }
+  };
+
+  const loginLink = {
+    textDecoration: "none",
+    fontStyle: "italic",
+    fontSize: "small",
+    fontFamily: "Raleway",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  };
+  return (
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+    >
+      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          {description1}
+        </DialogContentText>
+        <br />
+        <DialogContentText id="alert-dialog-description">
+          {description2}
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        {type === "forgot" ? (
+          <Button onClick={handleResendLink} autoFocus>
+            Resend the link
+          </Button>
+        ) : (
+          <Link href="/login" sx={loginLink}>
+            Go Back to Login Page
+          </Link>
+        )}
+      </DialogActions>
+    </Dialog>
+  );
+}
