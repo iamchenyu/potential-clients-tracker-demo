@@ -11,7 +11,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/iamchenyu/potential-clients-tracker-app">
+  <a href="https://potential-clients-tracker.herokuapp.com/">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
@@ -26,7 +26,7 @@ follow up on this customer”, “what the conversion rate is for the social med
 so on to help the staff to connect with the customers easily and convert them to
 customers smoothly.
     <br />
-    <a href="https://github.com/github_username/repo_name"><strong>View Demo »</strong></a>
+    <a href="https://potential-clients-tracker.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
     <br />
 </div>
@@ -162,9 +162,9 @@ Browser the DEMO by registering a new user or using the login information below:
 - [x] Add a new client
 - [x] Map clients' journey
 - [ ] Future Features
-  - [ ] Sort & Filter clients based on user needs
+  - [x] Sort & Filter clients based on user needs
   - [ ] Group clients based on different categories, such as marketing channels and status and generate analysis charts
-  - [ ] Allow users to comment on each client for the updates
+  - [x] Allow users to comment on each client for the updates
   - [ ] Email notifications to users
 
 See the [open issues](https://github.com/iamchenyu/potential-clients-tracker-app/issues) for a full list of proposed features (and known issues).
@@ -195,6 +195,8 @@ Don't forget to give the project a star! Thanks again!
 Chenyu Wang - hellochenyuw@gmail.com
 
 Project Link: [https://github.com/iamchenyu/potential-clients-tracker-app](https://github.com/iamchenyu/potential-clients-tracker-app/issues)
+
+Try it out: https://potential-clients-tracker.herokuapp.com/
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
