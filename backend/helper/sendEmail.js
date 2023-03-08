@@ -7,7 +7,13 @@ const sendEmail = (user, token) => {
     from: "adhc@ccacc-dc.org",
     subject: "Reset password requested",
     templateId: "d-97b8b1b36a974e008eada8ea51d5450d",
-    dynamic_template_data: { token: token },
+    dynamic_template_data: {
+      token: token,
+      domain:
+        process.env.NODE_ENV === "production"
+          ? "https://potential-clients-tracker.herokuapp.com"
+          : "http://localhost:3000",
+    },
   };
 
   sgMail
