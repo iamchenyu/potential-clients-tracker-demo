@@ -7,6 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Link } from "@mui/material";
 import PotentialClientTrackerApi from "../api";
+import { Link as RouterLink } from "react-router-dom";
 
 export default function AlertDialog({
   type,
@@ -61,7 +62,7 @@ export default function AlertDialog({
             Resend the link
           </Button>
         ) : (
-          <Link href="/login" sx={loginLink}>
+          <Link component={RouterLink} to="/login" sx={loginLink}>
             Go Back to Login Page
           </Link>
         )}

@@ -1,4 +1,5 @@
 import { Typography, Link } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 
 const copyrightLink = {
   textDecoration: "none",
@@ -19,8 +20,9 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link
+        component={RouterLink}
         color="inherit"
-        href="https://github.com/iamchenyu"
+        to="https://github.com/iamchenyu"
         target="_blank"
         sx={copyrightLink}
       >

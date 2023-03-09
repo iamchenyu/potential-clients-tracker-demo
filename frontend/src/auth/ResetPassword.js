@@ -11,6 +11,7 @@ import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
 import { useParams } from "react-router-dom";
 import AlertDialog from "./AlertDialog";
+import { Link as RouterLink } from "react-router-dom";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -90,7 +91,12 @@ const ResetPassword = () => {
           >
             Change
           </Button>
-          <Link href="/login" variant="body2" sx={loginLink}>
+          <Link
+            component={RouterLink}
+            to="/login"
+            variant="body2"
+            sx={loginLink}
+          >
             Cancel and go back to the login page
           </Link>
         </Box>

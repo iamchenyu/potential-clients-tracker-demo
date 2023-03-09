@@ -10,6 +10,7 @@ import {
 import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
 import AlertDialog from "./AlertDialog";
+import { Link as RouterLink } from "react-router-dom";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -86,7 +87,12 @@ const ForgotPassword = () => {
           >
             Submit
           </Button>
-          <Link href="/login" variant="body2" sx={loginLink}>
+          <Link
+            component={RouterLink}
+            to="/login"
+            variant="body2"
+            sx={loginLink}
+          >
             Back to login page
           </Link>
         </Box>

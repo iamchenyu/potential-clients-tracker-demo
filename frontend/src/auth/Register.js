@@ -14,6 +14,7 @@ import logo from "../logo.png";
 import Copyright from "../helper/copyright";
 import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
+import { Link as RouterLink } from "react-router-dom";
 
 const loginLink = {
   textDecoration: "none",
@@ -143,7 +144,12 @@ export default function Register({ handleLogin }) {
               </Button>
               <Grid container sx={{ justifyContent: "center" }}>
                 <Grid item>
-                  <Link href="/login" variant="body2" sx={loginLink}>
+                  <Link
+                    component={RouterLink}
+                    to="/login"
+                    variant="body2"
+                    sx={loginLink}
+                  >
                     {"Already have an account? Log in here"}
                   </Link>
                 </Grid>
