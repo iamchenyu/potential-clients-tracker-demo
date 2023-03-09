@@ -58,8 +58,8 @@ function AppRoutes() {
             element={<Register handleLogin={handleLogin} />}
           />
           <Route path="/login" element={<Login handleLogin={handleLogin} />} />
-          {/* <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} /> */}
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password/:token" element={<ResetPassword />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </>
       )}

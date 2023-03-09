@@ -12,6 +12,7 @@ import {
   Typography,
   Container,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import logo from "../logo.png";
 import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
@@ -135,13 +136,23 @@ export default function Login({ handleLogin }) {
               Log In
             </Button>
             <Grid container>
-              {/* <Grid item xs>
-                <Link href="/forgot-password" variant="body2" sx={loginLink}>
+              <Grid item xs>
+                <Link
+                  component={RouterLink}
+                  to="/forgot-password"
+                  variant="body2"
+                  sx={loginLink}
+                >
                   Forgot password?
                 </Link>
-              </Grid> */}
+              </Grid>
               <Grid item>
-                <Link href="/register" variant="body2" sx={loginLink}>
+                <Link
+                  component={RouterLink}
+                  to="/register"
+                  variant="body2"
+                  sx={loginLink}
+                >
                   {"Don't have an account? Register here"}
                 </Link>
               </Grid>
