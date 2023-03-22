@@ -1,5 +1,5 @@
 const db = require("../db");
-const { NotFoundError } = require("../ExpressError");
+const { NotFoundError, BadRequestError } = require("../ExpressError");
 const sqlUpdateHelper = require("../helper/sqlUpdateHelper");
 
 class PotentialClient {
@@ -80,9 +80,13 @@ class PotentialClient {
       channel: "from_channel",
     };
 
+    if (Object.keys(data).length === 0)
+      throw new BadRequestError("New client information cannot be empty");
+
     const cols = Object.keys(data)
       .map((key) => jsToSql[key] || key)
       .join(", ");
+
     const valIdx = Object.keys(data)
       .map((key, idx) => `$${idx + 1}`)
       .join(", ");
@@ -283,7 +287,18 @@ class PotentialClient {
 
     let comment = result.rows[0];
 
-    return comment;
+    const details = await db.query(
+      `
+      SELECT u.id, u.comment, u.commented_at, users.email, c.first_name AS firstName, c.last_name AS lastName
+      FROM updates AS u
+      LEFT JOIN users ON users.id = u.user_id
+      LEFT JOIN clients AS c ON c.id = u.client_id
+      WHERE u.id=$1
+      `,
+      [comment.id]
+    );
+
+    return details.rows[0];
   }
 
   // static async updateComment(id, { comment }) {

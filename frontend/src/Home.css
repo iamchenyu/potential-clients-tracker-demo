@@ -98,6 +98,14 @@
   #home-calender {
     font-size: 1rem;
   }
+
+  .stepper_item:before {
+    width: 15.2px;
+  }
+
+  .stepper_title {
+    font-size: small;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -121,11 +129,11 @@
   }
 }
 
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 500px) {
   .home-imagewrapper-title {
     top: 45%;
     left: 50%;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .home-imagewrapper {

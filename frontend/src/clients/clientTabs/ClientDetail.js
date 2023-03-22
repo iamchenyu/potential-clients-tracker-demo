@@ -40,6 +40,15 @@ export default function ClientDetail({ open, handleCancel, client }) {
     }
   };
 
+  const clientName = {
+    minWidth: "fit-content",
+    fontSize: "0.9rem",
+    marginRight: "10px",
+    "@media (max-width: 500px)": {
+      display: "none",
+    },
+  };
+
   return (
     <Dialog
       fullScreen
@@ -50,14 +59,7 @@ export default function ClientDetail({ open, handleCancel, client }) {
       <AppBar sx={{ position: "relative" }}>
         <Toolbar>
           <ClientDetailTabBar handleTabChange={handleTabChange} />
-          <Typography
-            variant="caption"
-            sx={{
-              minWidth: "fit-content",
-              fontSize: "0.9rem",
-              marginRight: "10px",
-            }}
-          >
+          <Typography variant="caption" sx={clientName}>
             Client - {`${client.first_name} ${client.last_name}`}
           </Typography>
           <IconButton

@@ -82,8 +82,6 @@ class User {
       [...vals, id]
     );
 
-    console.log("updated: ", user);
-
     if (!user.rows[0]) throw new NotFoundError("No such user");
 
     return user.rows[0];

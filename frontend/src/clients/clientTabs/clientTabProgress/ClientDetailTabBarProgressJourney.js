@@ -77,8 +77,15 @@ const journeyWrapper = {
   justifyContent: "center",
   height: "25%",
   padding: "0",
-  "@media (max-width: 415px)": {
-    height: "10%",
+  "@media (max-width: 500px)": {
+    height: "60%",
+    overflow: "auto",
+  },
+};
+
+const step = {
+  "@media (max-width: 500px)": {
+    minWidth: "100px",
   },
 };
 
@@ -99,7 +106,7 @@ const ClientDetailTabBarProgressJourney = ({
             connector={<QontoConnector />}
           >
             {clientDetails.status_updated_dates.map((date) => (
-              <Step key={date.id}>
+              <Step key={date.id} sx={step}>
                 <StepLabel StepIconComponent={QontoStepIcon}>
                   {statusMapping[date.status_id]}
                   <br />

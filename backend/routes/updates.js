@@ -7,9 +7,11 @@ const {
   ensureLoggedIn,
 } = require("../middleware/auth");
 const PotentialClient = require("../models/potentialClient");
+const User = require("../models/user");
 const addUpdatesSchema = require("../schemas/addUpdatesSchema.json");
 const jsonschema = require("jsonschema");
 const { BadRequestError } = require("../ExpressError");
+const { sendCommentEmail } = require("../helper/sendEmail");
 
 const router = express.Router();
 
@@ -22,8 +24,20 @@ router.post("/", ensureEditorOrAdmin, async (req, res, next) => {
       throw new BadRequestError(errs);
     }
 
-    const comment = await PotentialClient.createComment(req.body);
-    return res.json({ comment });
+    const newComment = await PotentialClient.createComment(req.body);
+
+    const users = await User.getAllUsers();
+
+    const emails = users.map((user) => user.email);
+
+    sendCommentEmail(
+      emails,
+      newComment.firstname,
+      newComment.lastname,
+      newComment.comment
+    );
+
+    return res.json({ newComment });
   } catch (e) {
     return next(e);
   }

@@ -15,6 +15,7 @@ import Copyright from "../helper/copyright";
 import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
 import { Link as RouterLink } from "react-router-dom";
+import errMapping from "../helper/errorMsg";
 
 const loginLink = {
   textDecoration: "none",
@@ -40,7 +41,10 @@ export default function Register({ handleLogin }) {
       const { data } = await PotentialClientTrackerApi.register(registerData);
       handleLogin(data.userId);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
     }
   };
 

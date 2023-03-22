@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import AppContext from "../../../AppContext";
 import PotentialClientTrackerApi from "../../../api";
+import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
   const [update, setUpdate] = useState(null);
@@ -16,25 +17,33 @@ const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = { clientId: client.id, userId: user.id, comment: update };
+    const formData = {
+      clientId: client.id,
+      userId: user.id,
+      comment: update,
+    };
     try {
       await PotentialClientTrackerApi.addComment(formData);
+      setUpdate(null);
       setDummy(!dummy);
     } catch (e) {
-      setErr(e.response.data.error.message);
-      console.log(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.error(e.response.data.error.message);
     }
+  };
+  const commentForm = {
+    width: "90%",
+    margin: "20px 20px 0 20px",
+    height: "20vh",
+    "@media (max-width: 500px)": {
+      height: "100%",
+    },
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        width: "90%",
-        margin: "20px 20px 0 20px",
-        height: "20vh",
-      }}
-    >
+    <Box component="form" sx={commentForm}>
       <TextField
         label="Comments"
         placeholder="What's going on with the client?"

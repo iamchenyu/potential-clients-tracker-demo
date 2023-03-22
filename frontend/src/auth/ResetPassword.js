@@ -12,6 +12,7 @@ import AlertBanner from "../AlertBanner";
 import { useParams } from "react-router-dom";
 import AlertDialog from "./AlertDialog";
 import { Link as RouterLink } from "react-router-dom";
+import errMapping from "../helper/errorMsg";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -34,7 +35,9 @@ const ResetPassword = () => {
       setOpen(true);
     } catch (e) {
       console.log(e);
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
     }
   };
 

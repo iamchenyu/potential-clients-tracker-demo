@@ -1,0 +1,16 @@
+.search-input {
+  margin-top: 20px;
+}
+
+@media only screen and (max-width: 500px) {
+  .search-input {
+    width: 50%;
+    margin-top: 0;
+  }
+
+  #search-button {
+    width: 40%;
+    padding: 0;
+    margin: auto;
+  }
+}

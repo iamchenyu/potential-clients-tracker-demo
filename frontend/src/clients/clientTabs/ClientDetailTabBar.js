@@ -13,6 +13,10 @@ export default function ClientDetailTabBar({ handleTabChange }) {
 
   const tabColors = {
     color: "#fff",
+    "@media (max-width: 500px)": {
+      padding: "12px 5px",
+      fontSize: "small",
+    },
   };
 
   return (

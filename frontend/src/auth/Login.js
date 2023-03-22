@@ -17,6 +17,7 @@ import logo from "../logo.png";
 import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
 import Copyright from "../helper/copyright";
+import errMapping from "../helper/errorMsg";
 
 export default function Login({ handleLogin }) {
   const [err, setErr] = React.useState(null);
@@ -47,7 +48,10 @@ export default function Login({ handleLogin }) {
       const { data } = await PotentialClientTrackerApi.login(loginData);
       handleLogin(data.userId, data.remember);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
     }
   };
 

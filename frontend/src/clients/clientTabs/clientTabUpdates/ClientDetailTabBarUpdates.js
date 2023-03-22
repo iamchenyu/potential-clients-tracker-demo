@@ -20,8 +20,6 @@ const ClientDetailTabBarUpdates = ({ client }) => {
     fetchUpdates(client.id);
   }, [dummy]);
 
-  console.log(updates);
-
   return (
     <>
       {updates ? (

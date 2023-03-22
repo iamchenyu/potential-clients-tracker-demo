@@ -5,6 +5,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import ClientFormField from "./ClientFormField";
 import DeleteConfirmation from "../../../DeleteConfirmation";
 import AppContext from "../../../AppContext";
+import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarInformation = ({ client, getErr }) => {
   const [isDisabled, setIsDisabled] = React.useState(true);
@@ -61,7 +62,9 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
       );
       window.location.reload(false);
     } catch (e) {
-      getErr(e.response.data.error.message);
+      getErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
     }
   };
 
@@ -76,6 +79,9 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
   const editOrDeleteButtons = {
     display: "flex",
     gap: "10px",
+    "@media (max-width: 500px)": {
+      marginTop: "20px",
+    },
   };
 
   const deleteButton = {
@@ -84,15 +90,19 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
       backgroundColor: "error.main",
     },
   };
+
+  const titleWithButtons = {
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "10px",
+    "@media (max-width: 500px)": {
+      flexDirection: "column",
+    },
+  };
+
   return (
     <>
-      <DialogTitle
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginTop: "10px",
-        }}
-      >
+      <DialogTitle sx={titleWithButtons}>
         <span style={{ fontSize: "1.5rem" }}>Client Information</span>
         {isDisabled ? (
           <Box sx={editOrDeleteButtons}>

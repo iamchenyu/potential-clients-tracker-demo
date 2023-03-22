@@ -120,7 +120,7 @@
   }
 }
 
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 500px) {
   .stepper_item {
     min-width: 150px;
     width: 60%;
@@ -128,5 +128,11 @@
   }
   .stepper {
     margin: 0;
+  }
+  .stepper_title {
+    font-size: small;
+    line-height: 1.2;
+    vertical-align: middle;
+    white-space: break-spaces;
   }
 }

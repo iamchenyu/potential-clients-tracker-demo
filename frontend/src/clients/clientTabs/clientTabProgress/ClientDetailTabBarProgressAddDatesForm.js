@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { DialogTitle, Box } from "@mui/material";
 import PotentialClientTrackerApi from "../../../api";
-import AlertBanner from "../../../AlertBanner";
+import errMapping from "../../../helper/errorMsg";
 
 export default function ClientDetailTabBarProgressAddDatesForm({
   open,
@@ -33,7 +33,10 @@ export default function ClientDetailTabBarProgressAddDatesForm({
       handleClose();
       updateClient(data.client);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
       handleClose();
     }
   };

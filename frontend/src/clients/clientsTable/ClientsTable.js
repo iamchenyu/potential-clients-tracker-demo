@@ -23,6 +23,8 @@ import AddClient from "../AddClient/AddClient";
 import AlertBanner from "../../AlertBanner";
 import AppContext from "../../AppContext";
 import PotentialClientTrackerApi from "../../api";
+import "./ClientsTable.css";
+import errMapping from "../../helper/errorMsg";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -199,10 +201,15 @@ export default function ClientsTable() {
               </InputAdornment>
             ),
           }}
-          sx={{ mt: "20px" }}
+          className="search-input"
         />
 
-        <Button variant="contained" sx={{ my: 3 }} onClick={handleClickOpen}>
+        <Button
+          variant="contained"
+          sx={{ my: 3 }}
+          onClick={handleClickOpen}
+          id="search-button"
+        >
           <AddIcon />
           New Client
         </Button>

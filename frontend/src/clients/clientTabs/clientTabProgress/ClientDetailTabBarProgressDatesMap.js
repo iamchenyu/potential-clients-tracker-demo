@@ -15,6 +15,7 @@ import $ from "jquery";
 import PotentialClientTrackerApi from "../../../api";
 import ClientDetailTabBarProgressAddDatesForm from "./ClientDetailTabBarProgressAddDatesForm";
 import AlertBanner from "../../../AlertBanner";
+import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarProgressDatesMap = ({
   s,
@@ -87,7 +88,10 @@ const ClientDetailTabBarProgressDatesMap = ({
       await PotentialClientTrackerApi.deleteStatus(id);
       setDummy(!dummy);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
     }
     setOpenConfirmation(false);
   };

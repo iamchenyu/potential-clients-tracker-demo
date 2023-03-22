@@ -11,6 +11,7 @@ import PotentialClientTrackerApi from "../api";
 import AlertBanner from "../AlertBanner";
 import AlertDialog from "./AlertDialog";
 import { Link as RouterLink } from "react-router-dom";
+import errMapping from "../helper/errorMsg";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +31,10 @@ const ForgotPassword = () => {
       console.log(data);
       setOpen(true);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
     }
   };
 

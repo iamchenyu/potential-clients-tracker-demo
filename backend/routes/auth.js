@@ -9,7 +9,7 @@ const {
   createResetToken,
   verifyResetToken,
 } = require("../helper/token");
-const sendEmail = require("../helper/sendEmail");
+const { sendResetEmail } = require("../helper/sendEmail");
 
 const route = express.Router();
 
@@ -113,9 +113,8 @@ route.post("/forgot-password", async (req, res, next) => {
   try {
     const user = await User.getUser({ email: req.body.email });
     const resetToken = createResetToken(user);
-    const updatedUser = await User.update(user.id, { reset: resetToken });
-    console.log(updatedUser);
-    sendEmail(user, resetToken);
+    await User.update(user.id, { reset: resetToken });
+    sendResetEmail(user, resetToken);
     return res.json({ message: "Check your email" });
   } catch (e) {
     return next(e);

@@ -1,6 +1,6 @@
 const sgMail = require("@sendgrid/mail");
 
-const sendEmail = (user, token) => {
+const sendResetEmail = (user, token) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
     to: user.email,
@@ -26,4 +26,43 @@ const sendEmail = (user, token) => {
     });
 };
 
-module.exports = sendEmail;
+const sendCommentEmail = (emails, firstname, lastname, comment) => {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const msg = {
+    from: "adhc@ccacc-dc.org",
+    subject: "New update posted",
+    templateId: "d-6e7c8d1041ae4524bdd64d9135ae9810",
+    dynamic_template_data: {
+      firstName: firstname,
+      lastName: lastname,
+      comment: comment,
+      link:
+        process.env.NODE_ENV === "production"
+          ? "https://potential-clients-tracker.herokuapp.com"
+          : "http://localhost:3000",
+    },
+    personalizations: [
+      {
+        to: [{ email: "adhc@ccacc-dc.org" }],
+
+        bcc: emails.map((email) => ({
+          email: email,
+        })),
+      },
+    ],
+  };
+
+  console.log(msg);
+
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log("Email sent successfully");
+    })
+    .catch((error) => {
+      console.error(error);
+      console.log(error.response.body.errors);
+    });
+};
+
+module.exports = { sendResetEmail, sendCommentEmail };

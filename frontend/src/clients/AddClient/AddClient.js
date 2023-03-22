@@ -17,6 +17,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import PotentialClientTrackerApi from "../../api";
 import AlertBanner from "../../AlertBanner";
 import AddClientField from "./AddClientField";
+import errMapping from "../../helper/errorMsg";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -32,7 +33,10 @@ export default function AddClient({ open, handleCancel }) {
       await PotentialClientTrackerApi.addClient(formData);
       window.location.reload(false);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
     }
   };
 
@@ -79,6 +83,7 @@ export default function AddClient({ open, handleCancel }) {
           severity="error"
           title="Add Client Failed"
           msg={`${err} - please try again`}
+          setErr={setErr}
         />
       ) : null}
       <DialogTitle sx={{ fontSize: "1.5rem", marginTop: "15px" }}>

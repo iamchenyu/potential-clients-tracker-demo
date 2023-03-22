@@ -10,6 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import PotentialClientTrackerApi from "../../../api";
 import AppContext from "../../../AppContext";
 import DeleteConfirmation from "../../../DeleteConfirmation";
+import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarUpdatesList = ({ update, setErr, dummy, setDummy }) => {
   const { user } = useContext(AppContext);
@@ -62,11 +63,11 @@ const ClientDetailTabBarUpdatesList = ({ update, setErr, dummy, setDummy }) => {
       });
       setDummy(!dummy);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
     }
   };
-
-  console.log(user);
 
   return (
     <>

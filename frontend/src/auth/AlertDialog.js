@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Link } from "@mui/material";
 import PotentialClientTrackerApi from "../api";
 import { Link as RouterLink } from "react-router-dom";
+import errMapping from "../helper/errorMsg";
 
 export default function AlertDialog({
   type,
@@ -26,7 +27,10 @@ export default function AlertDialog({
       });
       console.log(data);
     } catch (e) {
-      setErr(e.response.data.error.message);
+      setErr(
+        errMapping[e.response.data.error.message] || "Something went wrong"
+      );
+      console.log(e.response.data.error.message);
     }
   };
 
