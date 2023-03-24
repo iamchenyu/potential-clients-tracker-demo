@@ -17,7 +17,7 @@ route.post("/", ensureEditorOrAdmin, async (req, res, next) => {
     }
 
     if (req.body.statusId == 1) {
-      throw new BadRequestError("Can't change start date");
+      throw new BadRequestError("Can't change the start date");
     }
 
     const result = await PotentialClient.addStatusDate(req.body);

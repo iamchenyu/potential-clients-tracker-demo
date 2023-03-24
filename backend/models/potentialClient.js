@@ -259,7 +259,7 @@ class PotentialClient {
 
     const comments = results.rows;
 
-    if (!comments) throw new NotFoundError("No such comments");
+    if (!comments) throw new NotFoundError("No such comment");
 
     return comments;
   }
