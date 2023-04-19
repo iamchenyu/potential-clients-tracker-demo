@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppContext from "../../../AppContext";
 import PotentialClientTrackerApi from "../../../api";
 import errMapping from "../../../helper/errorMsg";
@@ -35,7 +35,7 @@ const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
   };
   const commentForm = {
     width: "90%",
-    margin: "20px 20px 0 20px",
+    margin: "20px 20px 30px 20px",
     height: "20vh",
     "@media (max-width: 500px)": {
       height: "100%",
@@ -63,6 +63,14 @@ const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
       >
         Submit
       </Button>
+      <Typography
+        variant="subtitle2"
+        display="block"
+        gutterBottom
+        sx={{ marginTop: "10px", fontStyle: "italic" }}
+      >
+        * All users will receive an email notification regarding the update
+      </Typography>
     </Box>
   );
 };

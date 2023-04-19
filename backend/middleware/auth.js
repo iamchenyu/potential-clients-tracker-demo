@@ -42,6 +42,7 @@ const ensureEditorOrAdmin = (req, res, next) => {
 
 const ensureAdmin = (req, res, next) => {
   try {
+    console.log(res.locals);
     if (res.locals.user && res.locals.user.role === "admin") {
       return next();
     } else {

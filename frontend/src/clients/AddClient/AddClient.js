@@ -90,7 +90,11 @@ export default function AddClient({ open, handleCancel }) {
         Add New Client
       </DialogTitle>
       <DialogContent>
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ marginBottom: "30px" }}
+        >
           <AddClientField setFormData={setFormData} />
 
           <DialogActions sx={editFormButtons}>

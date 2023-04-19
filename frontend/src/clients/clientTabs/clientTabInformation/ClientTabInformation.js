@@ -44,6 +44,10 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
       dob: data.get("dob"),
+      gender: data.get("gender"),
+      marital: data.get("marital"),
+      contact: data.get("contact"),
+      relationship: data.get("relationship"),
       email: data.get("email"),
       phone: data.get("phone"),
       address: data.get("address"),
@@ -51,10 +55,11 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
       channel: data.get("channel"),
       physician: data.get("physician"),
       diagnosis: data.get("diagnosis"),
-      note: data.get("note"),
+      notes: data.get("notes"),
       daycare: data.get("daycare") === "true" ? true : false,
-      medicaid: data.get("medicaid") === "true" ? true : false,
+      medicaid: data.get("medicaid"),
     };
+
     try {
       await PotentialClientTrackerApi.updateClient(
         client.id,
@@ -124,7 +129,11 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
         ) : null}
       </DialogTitle>
       <DialogContent>
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ mt: 1, mb: "30px" }}
+        >
           <ClientFormField client={client} disabled={isDisabled} />
 
           <DialogActions sx={editFormButtons}>

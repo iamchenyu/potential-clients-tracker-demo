@@ -27,10 +27,10 @@
       "title": "The password Schema",
       "examples": ["password"]
     },
-    "profileUrl": {
+    "role": {
       "type": "string",
-      "title": "The profileUrl Schema",
-      "examples": ["www.profile.com"]
+      "title": "The role Schema",
+      "examples": ["admin"]
     }
   },
   "examples": [
@@ -39,7 +39,6 @@
       "lastName": "Client",
       "email": "abc@gmail.com",
       "password": "password",
-      "profileUrl": "www.profile.com",
       "role": "admin"
     }
   ]

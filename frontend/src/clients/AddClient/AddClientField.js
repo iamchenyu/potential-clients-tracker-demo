@@ -1,21 +1,31 @@
 import * as React from "react";
 import { TextField, MenuItem, Box } from "@mui/material";
-import { citizenship, channels } from "../../helper/formSelectOptions";
+import {
+  citizenship,
+  channels,
+  gender,
+  marital,
+  medicaid,
+} from "../../helper/formSelectOptions";
 
 const initialFormValues = {
   firstName: "",
   lastName: "",
+  gender: gender[0].value,
+  marital: marital[0].value,
+  contact: "",
+  relationship: "",
   dob: "",
   phone: "",
   email: "",
   address: "",
   channel: channels[0].value,
   citizenship: citizenship[0].value,
-  medicaid: true,
+  medicaid: medicaid[0].value,
   daycare: true,
   physician: "",
   diagnosis: "",
-  note: "",
+  notes: "",
 };
 
 export default function AddClientField({ setFormData }) {
@@ -61,13 +71,83 @@ export default function AddClientField({ setFormData }) {
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
           margin="normal"
+          select
+          id="gender"
+          label="Gender"
+          name="gender"
+          value={formFields.gender}
+          onChange={handleFieldChange}
+          sx={{ width: "30%" }}
+        >
+          {gender.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          margin="normal"
+          select
+          id="marital"
+          label="Marital Status"
+          name="marital"
+          value={formFields.marital}
+          onChange={handleFieldChange}
+          sx={{ width: "30%" }}
+        >
+          {marital.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          margin="normal"
+          select
+          id="channel"
+          label="How did you hear about us?"
+          name="channel"
+          value={formFields.channel}
+          onChange={handleFieldChange}
+          sx={{ width: "30%" }}
+        >
+          {channels.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <TextField
+          margin="normal"
+          id="contact"
+          label="Contact Person"
+          name="contact"
+          value={formFields.contact}
+          onChange={handleFieldChange}
+          sx={{ width: "30%" }}
+        />
+        <TextField
+          margin="normal"
+          id="relationship"
+          label="Relationship"
+          name="relationship"
+          value={formFields.relationship}
+          onChange={handleFieldChange}
+          sx={{ width: "30%" }}
+        />
+        <TextField
+          margin="normal"
           id="phone"
           label="Phone Number"
           name="phone"
           value={formFields.phone}
           onChange={handleFieldChange}
-          sx={{ width: "45%" }}
+          sx={{ width: "30%" }}
         />
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
           margin="normal"
           id="email"
@@ -77,8 +157,6 @@ export default function AddClientField({ setFormData }) {
           onChange={handleFieldChange}
           sx={{ width: "45%" }}
         />
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
           margin="normal"
           id="address"
@@ -88,22 +166,6 @@ export default function AddClientField({ setFormData }) {
           onChange={handleFieldChange}
           sx={{ width: "45%" }}
         />
-        <TextField
-          margin="normal"
-          select
-          id="channel"
-          label="How did you hear about us?"
-          name="channel"
-          value={formFields.channel}
-          onChange={handleFieldChange}
-          sx={{ width: "45%" }}
-        >
-          {channels.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
@@ -126,14 +188,17 @@ export default function AddClientField({ setFormData }) {
           margin="normal"
           select
           id="medicaid"
-          label="Medicaid Eligibility"
+          label="Medicaid Category"
           name="medicaid"
           value={formFields.medicaid}
           onChange={handleFieldChange}
           sx={{ width: "30%" }}
         >
-          <MenuItem value={true}>Yes</MenuItem>
-          <MenuItem value={false}>No</MenuItem>
+          {medicaid.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
         <TextField
           margin="normal"
@@ -149,7 +214,6 @@ export default function AddClientField({ setFormData }) {
           <MenuItem value={false}>No</MenuItem>
         </TextField>
       </Box>
-
       <TextField
         margin="normal"
         fullWidth
@@ -171,10 +235,10 @@ export default function AddClientField({ setFormData }) {
       <TextField
         margin="normal"
         fullWidth
-        id="note"
-        label="Note"
-        name="note"
-        value={formFields.note}
+        id="notes"
+        label="Notes"
+        name="notes"
+        value={formFields.notes}
         onChange={handleFieldChange}
       />
     </>

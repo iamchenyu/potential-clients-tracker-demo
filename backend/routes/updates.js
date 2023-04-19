@@ -34,7 +34,8 @@ router.post("/", ensureEditorOrAdmin, async (req, res, next) => {
       emails,
       newComment.firstname,
       newComment.lastname,
-      newComment.comment
+      newComment.comment,
+      newComment.email
     );
 
     return res.json({ newComment });

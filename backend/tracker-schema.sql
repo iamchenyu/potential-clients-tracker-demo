@@ -29,12 +29,16 @@ CREATE TABLE clients (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL DEFAULT '',
   last_name TEXT NOT NULL DEFAULT '',
+  gender TEXT NOT NULL DEFAULT 'Male',
+  marital TEXT NOT NULL DEFAULT 'Unknown',
+  contact TEXT NOT NULL DEFAULT '',
+  relationship TEXT NOT NULL DEFAULT '',
   dob TEXT NOT NULL DEFAULT '',
   email TEXT NOT NULL DEFAULT 'placeholder@fake.com',
   phone TEXT NOT NULL DEFAULT '000-000-0000',
   address TEXT NOT NULL DEFAULT '',
   citizenship TEXT NOT NULL DEFAULT 'U.S. Citizen',
-  medicaid BOOLEAN NOT NULL DEFAULT TRUE,
+  medicaid TEXT NOT NULL DEFAULT 'Medicaid',
   daycare BOOLEAN NOT NULL DEFAULT TRUE,
   physician TEXT NOT NULL DEFAULT '',
   diagnosis TEXT NOT NULL DEFAULT '',
@@ -43,7 +47,7 @@ CREATE TABLE clients (
   current_status INTEGER NOT NULL DEFAULT 1
     REFERENCES statuses ON DELETE CASCADE,
   is_enrolled BOOLEAN NOT NULL DEFAULT FALSE,
-  note TEXT NOT NULL DEFAULT '',
+  notes TEXT NOT NULL DEFAULT '',
   created_at DATE NOT NULL DEFAULT CURRENT_DATE
 );
 

@@ -5,7 +5,9 @@ const jsonschema = require("jsonschema");
 const { BadRequestError } = require("../ExpressError");
 const { ensureLoggedIn, ensureEditorOrAdmin } = require("../middleware/auth");
 const PotentialClient = require("../models/potentialClient");
+const User = require("../models/user");
 const clientSchema = require("../schemas/clientSchema.json");
+const { sendNewClientEmail } = require("../helper/sendEmail");
 
 const router = express.Router();
 
@@ -54,7 +56,13 @@ router.post("/", ensureEditorOrAdmin, async (req, res, next) => {
       throw new BadRequestError(errs);
     }
 
-    const client = await PotentialClient.create(req.body);
+    const clientAdded = await PotentialClient.create(req.body);
+    const client = await PotentialClient.getClient(clientAdded.id);
+    const users = await User.getAllUsers();
+
+    const emails = users.map((user) => user.email);
+
+    sendNewClientEmail(emails, client, res.locals.user.email);
 
     return res.status(201).json({ client });
   } catch (e) {

@@ -103,4 +103,23 @@ const channels = [
   },
 ];
 
-export { citizenship, status, channels };
+const gender = [
+  { value: "Male", label: "Male" },
+  { value: "Female", label: "Female" },
+];
+
+const marital = [
+  { value: "Unknown", label: "Unknown" },
+  { value: "Married", label: "Married" },
+  { value: "Divorced", label: "Divorced" },
+  { value: "Widowed", label: "Widowed" },
+  { value: "Unmarried", label: "Unmarried" },
+];
+
+const medicaid = [
+  { value: "Medicaid", label: "Medicaid" },
+  { value: "QMB", label: "QMB" },
+  { value: "N/A", label: "N/A" },
+];
+
+export { citizenship, status, channels, gender, medicaid, marital };

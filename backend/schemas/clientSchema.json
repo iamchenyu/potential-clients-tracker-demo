@@ -17,6 +17,31 @@
       "title": "The last_name Schema",
       "examples": ["Client"]
     },
+    "dob": {
+      "type": "string",
+      "title": "The dob Schema",
+      "examples": ["03/21/1968"]
+    },
+    "gender": {
+      "type": "string",
+      "title": "The gender Schema",
+      "examples": ["Male"]
+    },
+    "marital": {
+      "type": "string",
+      "title": "The marital Schema",
+      "examples": ["Married"]
+    },
+    "contact": {
+      "type": "string",
+      "title": "The contact Schema",
+      "examples": ["Lily"]
+    },
+    "relationship": {
+      "type": "string",
+      "title": "The relationship Schema",
+      "examples": ["Daughter"]
+    },
     "email": {
       "type": "string",
       "title": "The email Schema",
@@ -38,9 +63,9 @@
       "examples": ["U.S. Citizen"]
     },
     "medicaid": {
-      "type": "boolean",
+      "type": "string",
       "title": "The medicaid Schema",
-      "examples": [true]
+      "examples": ["Medicaid"]
     },
     "daycare": {
       "type": "boolean",
@@ -67,9 +92,9 @@
       "title": "The is_enrolled Schema",
       "examples": [false]
     },
-    "note": {
+    "notes": {
       "type": "string",
-      "title": "The note Schema",
+      "title": "The notes Schema",
       "examples": ["Needs follow up"]
     }
   },
@@ -77,18 +102,23 @@
     {
       "first_name": "Test",
       "last_name": "Client",
+      "gender": "Male",
+      "marital": "Married",
+      "contact": "Lily",
+      "relationship": "Daughter",
+      "dob": "03/21/1968",
       "email": "abc@gmail.com",
       "address": "123 Street, Rockville, MD 20876",
       "phone": "123-456-7890",
       "citizenship": "U.S. Citizen",
-      "medicaid": true,
+      "medicaid": "Medicaid",
       "daycare": true,
       "physician": "Dr. Li",
       "diagnosis": "dementia",
       "from_channel": 2,
       "current_step": 1,
       "is_enrolled": false,
-      "note": "Needs follow up"
+      "notes": "Needs follow up"
     }
   ]
 }

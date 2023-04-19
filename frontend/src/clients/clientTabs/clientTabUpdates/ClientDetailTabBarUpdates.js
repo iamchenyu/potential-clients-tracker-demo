@@ -6,6 +6,7 @@ import ClientDetailTabBarUpdatesList from "./ClientDetailTabBarUpdatesList";
 import { Box, DialogTitle, ListItem } from "@mui/material";
 import ClientDetailTabBarUpdatesForm from "./ClientDetailTabBarUpdatesForm";
 import AlertBanner from "../../../AlertBanner";
+import SignpostOutlinedIcon from "@mui/icons-material/SignpostOutlined";
 
 const ClientDetailTabBarUpdates = ({ client }) => {
   const [updates, setUpdates] = useState(null);
@@ -41,7 +42,11 @@ const ClientDetailTabBarUpdates = ({ client }) => {
             dummy={dummy}
             setDummy={setDummy}
           />
-
+          <SignpostOutlinedIcon
+            color="primary"
+            fontSize="large"
+            sx={{ margin: "auto" }}
+          />
           <List sx={{ width: "100%", bgcolor: "background.paper" }}>
             {updates.length === 0 ? (
               <ListItem alignItems="center" sx={{ py: "20px" }}>
