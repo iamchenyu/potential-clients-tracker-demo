@@ -206,7 +206,7 @@ Try it out: https://potential-clients-tracker.herokuapp.com/
 [github-shield]: https://img.shields.io/badge/-github-black.svg?style=for-the-badge&logo=github&colorB=555
 [github-url]: https://github.com/iamchenyu
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
+[linkedin-url]: https://www.linkedin.com/in/chenyuwang-/
 [gmail-shield]: https://img.shields.io/badge/-gmail-black.svg?style=for-the-badge&logo=gmail&colorB=555
 [gmail-url]: mailto:hellochenyuw@gmail.com
 [login-screenshot]: images/login.png
