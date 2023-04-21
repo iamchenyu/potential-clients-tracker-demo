@@ -1,11 +1,13 @@
-DROP DATABASE clients_tracker;
-CREATE DATABASE clients_tracker;
+-- DROP DATABASE clients_tracker;
+-- CREATE DATABASE clients_tracker;
 
-\connect clients_tracker
+-- \connect clients_tracker
+
+-- \i tracker-schema.sql
 
 -- \i backend/tracker-schema.sql
 
-\i tracker-schema.sql
+
 
 INSERT INTO statuses (name)
 VALUES ('Initial Contact'), 
