@@ -119,6 +119,40 @@ VALUES ('Odille',
         4, 
         2,
         '02/01/2023'
+        ),
+        ('Tyler', 
+        'Bryant', 
+        'Male',
+        'Unknown',
+        'Dixon',
+        'Friend',
+        '11/20/1961',
+        'tylerb@gmail.com', 
+        '830-305-2394',
+        '2405 Morris Street', 
+        'Green Card Holder',
+        'N/A',
+        FALSE,
+        4, 
+        1,
+        '04/21/2023'
+        ),
+        ('Jessica', 
+        'Rubenstein', 
+        'Female',
+        'Married',
+        'Davis',
+        'Caregiver',
+        '01/13/1954',
+        'davisled@gmail.com', 
+        '307-762-7364',
+        '2280 Archwood Avenue', 
+        'U.S. Citizen',
+        'QMB',
+        FALSE,
+        3, 
+        1,
+        '03/12/2023'
         );
 
 
@@ -130,10 +164,12 @@ VALUES (1, 1, '12/22/2022'),
        (3, 2, '11/13/2022'),
        (3, 3, '11/21/2022'),
        (4, 1, '02/01/2023'),
-       (4, 2, '02/03/2023');
+       (4, 2, '02/03/2023'),
+       (5, 1, '04/21/2023'),
+       (6, 2, '03/12/2023');
 
 INSERT INTO updates (user_id, client_id, comment)
 VALUES (1, 1, 'The potential client would like to schedule an onsite visit after discussing with his family'),
        (2, 2, 'The potential client has no medicaid but is considering self-pay option'),
        (1, 3, 'He is asking information for his blind dad'),
-       (2, 4, 'Low probability of enrolling in our program')
+       (2, 4, 'Low probability of enrolling in our program');
