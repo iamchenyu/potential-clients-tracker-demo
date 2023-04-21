@@ -5,7 +5,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { Typography } from "@mui/material";
-import PotentialClientTrackerApi from "./api";
 
 export default function DeleteConfirmation({
   open,
