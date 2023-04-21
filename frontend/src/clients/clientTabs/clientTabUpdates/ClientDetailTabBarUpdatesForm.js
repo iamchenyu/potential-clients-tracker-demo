@@ -8,6 +8,7 @@ import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
   const [update, setUpdate] = useState(null);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const { user } = useContext(AppContext);
 
@@ -26,6 +27,7 @@ const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
       await PotentialClientTrackerApi.addComment(formData);
       setUpdate(null);
       setDummy(!dummy);
+      setIsSubmit(true);
     } catch (e) {
       setErr(
         errMapping[e.response.data.error.message] || "Something went wrong"
@@ -51,7 +53,7 @@ const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {
         required
         id="update"
         color="primary"
-        value={update}
+        value={isSubmit ? "" : update}
         multiline
         rows={2}
         onChange={handleChange}

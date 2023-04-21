@@ -7,8 +7,6 @@
 
 \i backend/tracker-schema.sql
 
-
-
 INSERT INTO statuses (name)
 VALUES ('Initial Contact'), 
        ('Information Session'), 
