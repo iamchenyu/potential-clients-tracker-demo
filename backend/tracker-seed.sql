@@ -1,11 +1,11 @@
--- DROP DATABASE clients_tracker;
--- CREATE DATABASE clients_tracker;
+-- DROP DATABASE clients_tracker_demo;
+-- CREATE DATABASE clients_tracker_demo;
 
--- \connect clients_tracker
+-- \connect clients_tracker_demo
 
 -- \i tracker-schema.sql
 
--- \i backend/tracker-schema.sql
+\i backend/tracker-schema.sql
 
 
 
