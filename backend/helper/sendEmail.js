@@ -46,9 +46,11 @@ const sendCommentEmail = (emails, firstname, lastname, comment, user) => {
       {
         to: [{ email: "hellochenyuw@gmail.com" }],
 
-        bcc: emails.map((email) => ({
-          email: email,
-        })),
+        bcc: emails
+          .filter((e) => e !== "hellochenyuw@gmail.com")
+          .map((email) => ({
+            email: email,
+          })),
       },
     ],
   };
@@ -89,9 +91,11 @@ const sendNewClientEmail = (emails, client, user) => {
       {
         to: [{ email: "hellochenyuw@gmail.com" }],
 
-        bcc: emails.map((email) => ({
-          email: email,
-        })),
+        bcc: emails
+          .filter((e) => e !== "hellochenyuw@gmail.com")
+          .map((email) => ({
+            email: email,
+          })),
       },
     ],
   };
