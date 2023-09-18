@@ -26,7 +26,7 @@ follow up on this customer”, “what the conversion rate is for the social med
 so on to help the staff to connect with the customers easily and convert them to
 customers smoothly.
     <br />
-    <a href="https://potential-clients-tracker.herokuapp.com/"><strong>View Demo »</strong></a>
+    <a href="https://potential-clients-tracker-demo.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
     <br />
 </div>
@@ -165,7 +165,7 @@ Browser the DEMO by registering a new user or using the login information below:
   - [x] Sort & Filter clients based on user needs
   - [ ] Group clients based on different categories, such as marketing channels and status and generate analysis charts
   - [x] Allow users to comment on each client for the updates
-  - [ ] Email notifications to users
+  - [x] Email notifications to users
 
 See the [open issues](https://github.com/iamchenyu/potential-clients-tracker-app/issues) for a full list of proposed features (and known issues).
 
