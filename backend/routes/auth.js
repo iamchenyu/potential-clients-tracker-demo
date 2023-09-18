@@ -32,7 +32,7 @@ route.post("/register", async (req, res, next) => {
           httpOnly: true,
           sameSite: "strict",
           signed: true,
-          maxAge: 24 * 3600000,
+          // maxAge: 24 * 3600000,
         }
       )
       .json({

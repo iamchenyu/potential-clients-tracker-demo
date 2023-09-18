@@ -4,14 +4,14 @@ const sendResetEmail = (user, token) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
     to: user.email,
-    from: "adhc@ccacc-dc.org",
+    from: "hellochenyuw@gmail.com",
     subject: "Reset password requested",
     templateId: "d-97b8b1b36a974e008eada8ea51d5450d",
     dynamic_template_data: {
       token: token,
       domain:
         process.env.NODE_ENV === "production"
-          ? "https://potential-clients-tracker.herokuapp.com"
+          ? "https://potential-clients-tracker-demo.herokuapp.com"
           : "http://localhost:3000",
     },
   };
@@ -29,7 +29,7 @@ const sendResetEmail = (user, token) => {
 const sendCommentEmail = (emails, firstname, lastname, comment, user) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
-    from: "adhc@ccacc-dc.org",
+    from: "hellochenyuw@gmail.com",
     subject: "New update posted",
     templateId: "d-6e7c8d1041ae4524bdd64d9135ae9810",
     dynamic_template_data: {
@@ -39,12 +39,12 @@ const sendCommentEmail = (emails, firstname, lastname, comment, user) => {
       user_email: user,
       link:
         process.env.NODE_ENV === "production"
-          ? "https://potential-clients-tracker.herokuapp.com"
+          ? "https://potential-clients-tracker-demo.herokuapp.com/"
           : "http://localhost:3000",
     },
     personalizations: [
       {
-        to: [{ email: "adhc@ccacc-dc.org" }],
+        to: [{ email: "hellochenyuw@gmail.com" }],
 
         bcc: emails.map((email) => ({
           email: email,
@@ -69,7 +69,7 @@ const sendCommentEmail = (emails, firstname, lastname, comment, user) => {
 const sendNewClientEmail = (emails, client, user) => {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
-    from: "adhc@ccacc-dc.org",
+    from: "hellochenyuw@gmail.com",
     subject: "New client added",
     templateId: "d-56b5bede6e5140d5af19cf521db20a97",
     dynamic_template_data: {
@@ -82,12 +82,12 @@ const sendNewClientEmail = (emails, client, user) => {
       user_email: user,
       link:
         process.env.NODE_ENV === "production"
-          ? "https://potential-clients-tracker.herokuapp.com"
+          ? "https://potential-clients-tracker-demo.herokuapp.com/"
           : "http://localhost:3000",
     },
     personalizations: [
       {
-        to: [{ email: "adhc@ccacc-dc.org" }],
+        to: [{ email: "hellochenyuw@gmail.com" }],
 
         bcc: emails.map((email) => ({
           email: email,
