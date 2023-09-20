@@ -24,7 +24,7 @@ route.post("/", ensureEditorOrAdmin, async (req, res, next) => {
 
     // update client's current status
     let client;
-    if (req.body.statusId == 12) {
+    if (req.body.statusId == 14) {
       client = await PotentialClient.update(result.client_id, {
         current_status: result.status_id,
         is_enrolled: true,
