@@ -14,7 +14,7 @@ import ClientsTable from "../clients/clientsTable/ClientsTable";
 import PotentialClientTrackerApi from "../helper/api";
 import "./Home.css";
 import Copyright from "../helper/copyright";
-import homepageLogo from "../photos/homepageLogo.png";
+import homepageLogo from "../photos/homepage.png";
 import AppContext from "../helper/AppContext";
 
 const Home = ({ userId, handleLogout }) => {
