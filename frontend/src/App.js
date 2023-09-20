@@ -1,12 +1,12 @@
 import * as React from "react";
 import theme from "./Theme";
 import { ThemeProvider } from "@mui/material/styles";
-import AppRoutes from "./AppRoutes";
+import AppRoutes from "./components/AppRoutes";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
+      <div>
         <AppRoutes />
       </div>
     </ThemeProvider>

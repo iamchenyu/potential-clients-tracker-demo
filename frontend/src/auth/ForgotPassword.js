@@ -7,8 +7,8 @@ import {
   Container,
   Link,
 } from "@mui/material";
-import PotentialClientTrackerApi from "../api";
-import AlertBanner from "../AlertBanner";
+import PotentialClientTrackerApi from "../helper/api";
+import AlertBanner from "../components/AlertBanner";
 import AlertDialog from "./AlertDialog";
 import { Link as RouterLink } from "react-router-dom";
 import errMapping from "../helper/errorMsg";
@@ -25,10 +25,9 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await PotentialClientTrackerApi.sendResetEmail({
+      await PotentialClientTrackerApi.sendResetEmail({
         email,
       });
-      console.log(data);
       setOpen(true);
     } catch (e) {
       setErr(

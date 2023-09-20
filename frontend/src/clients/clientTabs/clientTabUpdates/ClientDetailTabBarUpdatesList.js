@@ -7,9 +7,9 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PotentialClientTrackerApi from "../../../api";
-import AppContext from "../../../AppContext";
-import DeleteConfirmation from "../../../DeleteConfirmation";
+import PotentialClientTrackerApi from "../../../helper/api";
+import AppContext from "../../../helper/AppContext";
+import DeleteConfirmation from "../../../components/DeleteConfirmation";
 import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarUpdatesList = ({ update, setErr, dummy, setDummy }) => {

@@ -10,10 +10,10 @@ import {
   Typography,
   Container,
 } from "@mui/material";
-import logo from "../logo.png";
+import logo from "../photos/logo.png";
 import Copyright from "../helper/copyright";
-import PotentialClientTrackerApi from "../api";
-import AlertBanner from "../AlertBanner";
+import PotentialClientTrackerApi from "../helper/api";
+import AlertBanner from "../components/AlertBanner";
 import { Link as RouterLink } from "react-router-dom";
 import errMapping from "../helper/errorMsg";
 
@@ -28,6 +28,7 @@ const loginLink = {
 
 export default function Register({ handleLogin }) {
   const [err, setErr] = React.useState(null);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

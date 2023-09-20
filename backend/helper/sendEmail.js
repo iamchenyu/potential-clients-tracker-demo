@@ -12,7 +12,7 @@ const sendResetEmail = (user, token) => {
       domain:
         process.env.NODE_ENV === "production"
           ? "https://potential-clients-tracker-demo.herokuapp.com"
-          : "http://localhost:3000",
+          : "http://localhost:3001",
     },
   };
 
@@ -40,7 +40,7 @@ const sendCommentEmail = (emails, firstname, lastname, comment, user) => {
       link:
         process.env.NODE_ENV === "production"
           ? "https://potential-clients-tracker-demo.herokuapp.com/"
-          : "http://localhost:3000",
+          : "http://localhost:3001",
     },
     personalizations: [
       {
@@ -85,7 +85,7 @@ const sendNewClientEmail = (emails, client, user) => {
       link:
         process.env.NODE_ENV === "production"
           ? "https://potential-clients-tracker-demo.herokuapp.com/"
-          : "http://localhost:3000",
+          : "http://localhost:3001",
     },
     personalizations: [
       {

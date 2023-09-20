@@ -7,11 +7,11 @@ const isProduction = process.env.NODE_ENV === "production";
 const SECRET_KEY = process.env.SECRET_KEY || "temp-secrete-key";
 const COOKIE_SECRET = process.env.COOKIE_SECRET || "temp-secrete-key";
 
-const PORT = +process.env.PORT || "3000";
+const PORT = +process.env.PORT || "3001";
 
 const DATABASE_URL = isProduction
   ? process.env.DATABASE_URL
-  : "clients_tracker";
+  : "clients_tracker_demo";
 
 const SSL_CONFIG = isProduction ? { rejectUnauthorized: false } : false;
 

@@ -20,9 +20,9 @@ import AddIcon from "@mui/icons-material/Add";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import ClientsTableRow from "./ClientsTableRow";
 import AddClient from "../AddClient/AddClient";
-import AlertBanner from "../../AlertBanner";
-import AppContext from "../../AppContext";
-import PotentialClientTrackerApi from "../../api";
+import AlertBanner from "../../components/AlertBanner";
+import AppContext from "../../helper/AppContext";
+import PotentialClientTrackerApi from "../../helper/api";
 import "./ClientsTable.css";
 
 function descendingComparator(a, b, orderBy) {
@@ -130,12 +130,12 @@ EnhancedTableHead.propTypes = {
 };
 
 export default function ClientsTable() {
-  const [order, setOrder] = React.useState("asc");
-  const [orderBy, setOrderBy] = React.useState("id");
+  const [order, setOrder] = React.useState("desc");
+  const [orderBy, setOrderBy] = React.useState("created_at");
   const [open, setOpen] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
   const { user, clients } = React.useContext(AppContext);
   const [searchClients, setSearchClients] = React.useState(clients);
 

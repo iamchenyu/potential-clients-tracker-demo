@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import AlertBanner from "../../AlertBanner";
+import AlertBanner from "../../components/AlertBanner";
 import ClientDetailTabBar from "./ClientDetailTabBar";
 import ClientDetailTabBarInformation from "./clientTabInformation/ClientTabInformation";
 import ClientDetailTabBarProgress from "./clientTabProgress/ClientDetailTabBarProgress";

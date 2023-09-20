@@ -68,9 +68,9 @@
       "examples": ["Medicaid"]
     },
     "daycare": {
-      "type": "boolean",
+      "type": "string",
       "title": "The daycare Schema",
-      "examples": [true]
+      "examples": ["Yes"]
     },
     "physician": {
       "type": "string",
@@ -112,7 +112,7 @@
       "phone": "123-456-7890",
       "citizenship": "U.S. Citizen",
       "medicaid": "Medicaid",
-      "daycare": true,
+      "daycare": "Yes",
       "physician": "Dr. Li",
       "diagnosis": "dementia",
       "from_channel": 2,

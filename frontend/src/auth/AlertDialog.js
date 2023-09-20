@@ -6,7 +6,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Link } from "@mui/material";
-import PotentialClientTrackerApi from "../api";
+import PotentialClientTrackerApi from "../helper/api";
 import { Link as RouterLink } from "react-router-dom";
 import errMapping from "../helper/errorMsg";
 
@@ -22,10 +22,9 @@ export default function AlertDialog({
 }) {
   const handleResendLink = async () => {
     try {
-      const { data } = await PotentialClientTrackerApi.sendResetEmail({
+      await PotentialClientTrackerApi.sendResetEmail({
         email,
       });
-      console.log(data);
     } catch (e) {
       setErr(
         errMapping[e.response.data.error.message] || "Something went wrong"

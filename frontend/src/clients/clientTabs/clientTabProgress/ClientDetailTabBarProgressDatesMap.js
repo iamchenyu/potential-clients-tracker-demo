@@ -12,10 +12,11 @@ import {
 import CloseIcon from "@mui/icons-material/Close";
 import moment from "moment";
 import $ from "jquery";
-import PotentialClientTrackerApi from "../../../api";
+import PotentialClientTrackerApi from "../../../helper/api";
 import ClientDetailTabBarProgressAddDatesForm from "./ClientDetailTabBarProgressAddDatesForm";
-import AlertBanner from "../../../AlertBanner";
+import AlertBanner from "../../../components/AlertBanner";
 import errMapping from "../../../helper/errorMsg";
+import dayjs from "dayjs";
 
 const ClientDetailTabBarProgressDatesMap = ({
   s,
@@ -116,6 +117,12 @@ const ClientDetailTabBarProgressDatesMap = ({
     borderRadius: "16px",
   };
 
+  var utc = require("dayjs/plugin/utc");
+  var timezone = require("dayjs/plugin/timezone"); // dependent on utc plugin
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  const tzToDisplay = "America/New_York";
+
   return (
     <>
       {err ? (
@@ -145,7 +152,9 @@ const ClientDetailTabBarProgressDatesMap = ({
                       id={date.id}
                       key={date.id}
                     >
-                      {moment(date.update_date).format("MM-DD-YYYY")}
+                      {dayjs
+                        .tz(date.update_date, tzToDisplay)
+                        .format("MM/DD/YYYY")}
 
                       <CloseIcon fontSize="sm" sx={{ marginTop: "2px" }} />
                     </div>

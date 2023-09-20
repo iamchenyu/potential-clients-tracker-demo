@@ -1,11 +1,17 @@
 import * as React from "react";
 import { TextField, MenuItem, Box } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+import formatDate from "../../helper/dateConverter";
 import {
   citizenship,
   channels,
   gender,
   marital,
   medicaid,
+  daycare,
 } from "../../helper/formSelectOptions";
 
 const initialFormValues = {
@@ -15,14 +21,15 @@ const initialFormValues = {
   marital: marital[0].value,
   contact: "",
   relationship: "",
-  dob: "",
+  initialContactDate: dayjs(new Date()).format("YYYY/MM/DD"),
+  dob: dayjs(new Date("1900/01/01")).format("YYYY/MM/DD"),
   phone: "",
   email: "",
   address: "",
   channel: channels[0].value,
   citizenship: citizenship[0].value,
   medicaid: medicaid[0].value,
-  daycare: true,
+  daycare: daycare[0].value,
   physician: "",
   diagnosis: "",
   notes: "",
@@ -33,7 +40,10 @@ export default function AddClientField({ setFormData }) {
 
   const handleFieldChange = (e) => {
     setFormFields({ ...formFields, [e.target.name]: e.target.value });
-    setFormData(formFields);
+    setFormData({
+      ...formFields,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
@@ -58,15 +68,25 @@ export default function AddClientField({ setFormData }) {
           onChange={handleFieldChange}
           sx={{ width: "30%" }}
         />
-        <TextField
-          margin="normal"
-          id="dob"
-          label="Date of Birth"
-          name="dob"
-          value={formFields.dob}
-          onChange={handleFieldChange}
-          sx={{ width: "30%" }}
-        />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            id="dob"
+            label="Date of Birth"
+            name="dob"
+            value={dayjs(formFields.dob)}
+            slotProps={{
+              textField: {
+                error: false,
+              },
+            }}
+            onChange={(value) => {
+              value = formatDate(dayjs(value).format("YYYY/MM/DD"));
+              setFormFields({ ...formFields, dob: value });
+              setFormData({ ...formFields, dob: value });
+            }}
+            sx={{ width: "30%", marginTop: "16px", marginBottom: "8px" }}
+          />
+        </LocalizationProvider>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
@@ -137,6 +157,22 @@ export default function AddClientField({ setFormData }) {
           onChange={handleFieldChange}
           sx={{ width: "30%" }}
         />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            id="initialContactDate"
+            label="Initial Contact Date"
+            name="initialContactDate"
+            value={dayjs(formFields.initialContactDate)}
+            onChange={(value) => {
+              value = formatDate(dayjs(value).format("YYYY/MM/DD"));
+              setFormFields({ ...formFields, initialContactDate: value });
+              setFormData({ ...formFields, initialContactDate: value });
+            }}
+            sx={{ width: "30%", marginTop: "16px", marginBottom: "8px" }}
+          />
+        </LocalizationProvider>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
           margin="normal"
           id="phone"
@@ -146,8 +182,6 @@ export default function AddClientField({ setFormData }) {
           onChange={handleFieldChange}
           sx={{ width: "30%" }}
         />
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
           margin="normal"
           id="email"
@@ -155,7 +189,7 @@ export default function AddClientField({ setFormData }) {
           name="email"
           value={formFields.email}
           onChange={handleFieldChange}
-          sx={{ width: "45%" }}
+          sx={{ width: "30%" }}
         />
         <TextField
           margin="normal"
@@ -164,7 +198,7 @@ export default function AddClientField({ setFormData }) {
           name="address"
           value={formFields.address}
           onChange={handleFieldChange}
-          sx={{ width: "45%" }}
+          sx={{ width: "30%" }}
         />
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -210,8 +244,11 @@ export default function AddClientField({ setFormData }) {
           onChange={handleFieldChange}
           sx={{ width: "30%" }}
         >
-          <MenuItem value={true}>Yes</MenuItem>
-          <MenuItem value={false}>No</MenuItem>
+          {daycare.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
       </Box>
       <TextField

@@ -1,5 +1,9 @@
 const citizenship = [
   {
+    value: "Unknown",
+    label: "Unknown",
+  },
+  {
     value: "U.S. Citizen",
     label: "U.S. Citizen",
   },
@@ -32,38 +36,46 @@ const status = [
   },
   {
     value: "5",
-    label: "Applying for Medicaid",
+    label: "Applying for Citizenship",
   },
   {
     value: "6",
-    label: "Daycare Application Submission",
+    label: "Applying for SSI",
   },
   {
     value: "7",
-    label: "Phone Screening",
+    label: "Applying for Medicaid",
   },
   {
     value: "8",
-    label: "Interview",
+    label: "Daycare Application Submission",
   },
   {
     value: "9",
-    label: "Daycare Application Approved",
+    label: "Government Phone Screening",
   },
   {
     value: "10",
-    label: "Daycare Application Denied",
+    label: "Government Interview",
   },
   {
     value: "11",
-    label: "Daycare Application Appealing",
+    label: "Daycare Application Approved",
   },
   {
     value: "12",
-    label: "Enrolled",
+    label: "Daycare Application Denied",
   },
   {
     value: "13",
+    label: "Daycare Application Appealing",
+  },
+  {
+    value: "14",
+    label: "Enrolled",
+  },
+  {
+    value: "15",
     label: "Not To Proceed",
   },
 ];
@@ -71,7 +83,7 @@ const status = [
 const channels = [
   {
     value: "1",
-    label: "Search engine",
+    label: "Website",
   },
   {
     value: "2",
@@ -117,9 +129,22 @@ const marital = [
 ];
 
 const medicaid = [
+  {
+    value: "Unknown",
+    label: "Unknown",
+  },
   { value: "Medicaid", label: "Medicaid" },
   { value: "QMB", label: "QMB" },
   { value: "N/A", label: "N/A" },
 ];
 
-export { citizenship, status, channels, gender, medicaid, marital };
+const daycare = [
+  {
+    value: "Unknown",
+    label: "Unknown",
+  },
+  { value: "Yes", label: "Yes" },
+  { value: "No", label: "No" },
+];
+
+export { citizenship, status, channels, gender, medicaid, marital, daycare };

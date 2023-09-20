@@ -1,12 +1,23 @@
 import * as React from "react";
 import { TextField, MenuItem, Box } from "@mui/material";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   citizenship,
   channels,
   gender,
   marital,
   medicaid,
+  daycare,
 } from "../../../helper/formSelectOptions";
+import dayjs from "dayjs";
+
+var utc = require("dayjs/plugin/utc");
+var timezone = require("dayjs/plugin/timezone"); // dependent on utc plugin
+dayjs.extend(utc);
+dayjs.extend(timezone);
+const tzToDisplay = "America/New_York";
 
 export default function ClientFormField({ client, disabled }) {
   return (
@@ -30,15 +41,17 @@ export default function ClientFormField({ client, disabled }) {
           defaultValue={client.last_name}
           sx={{ width: "30%" }}
         />
-        <TextField
-          margin="normal"
-          disabled={disabled}
-          id="dob"
-          label="Date of Birth"
-          name="dob"
-          defaultValue={client.dob}
-          sx={{ width: "30%" }}
-        />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            disabled={disabled}
+            id="dob"
+            label="Date of Birth"
+            name="dob"
+            slotProps={{ textField: { id: "dob", error: false } }}
+            defaultValue={dayjs.tz(client.dob, tzToDisplay)}
+            sx={{ width: "30%", marginTop: "16px", marginBottom: "8px" }}
+          />
+        </LocalizationProvider>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
@@ -110,17 +123,27 @@ export default function ClientFormField({ client, disabled }) {
           defaultValue={client.relationship}
           sx={{ width: "30%" }}
         />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DatePicker
+            disabled={disabled}
+            id="initialContactDate"
+            label="Initial Contact Date"
+            name="initialContactDate"
+            slotProps={{ textField: { id: "icd" } }}
+            defaultValue={dayjs.tz(client.initial_contact_date, tzToDisplay)}
+            sx={{ width: "30%", marginTop: "16px", marginBottom: "8px" }}
+          />
+        </LocalizationProvider>
+      </Box>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
-          margin="normal"
           disabled={disabled}
           id="phone"
           label="Phone Number"
           name="phone"
           defaultValue={client.phone}
-          sx={{ width: "30%" }}
+          sx={{ width: "30%", marginTop: "16px", marginBottom: "8px" }}
         />
-      </Box>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <TextField
           margin="normal"
           disabled={disabled}
@@ -128,7 +151,7 @@ export default function ClientFormField({ client, disabled }) {
           label="Email Address"
           name="email"
           defaultValue={client.email}
-          sx={{ width: "45%" }}
+          sx={{ width: "30%" }}
         />
         <TextField
           margin="normal"
@@ -137,7 +160,7 @@ export default function ClientFormField({ client, disabled }) {
           label="Address"
           name="address"
           defaultValue={client.address}
-          sx={{ width: "45%" }}
+          sx={{ width: "30%" }}
         />
       </Box>
 
@@ -184,8 +207,11 @@ export default function ClientFormField({ client, disabled }) {
           defaultValue={client.daycare}
           sx={{ width: "30%" }}
         >
-          <MenuItem value={true}>Yes</MenuItem>
-          <MenuItem value={false}>No</MenuItem>
+          {daycare.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
         </TextField>
       </Box>
 

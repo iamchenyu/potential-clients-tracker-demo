@@ -14,8 +14,8 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import DialogTitle from "@mui/material/DialogTitle";
-import PotentialClientTrackerApi from "../../api";
-import AlertBanner from "../../AlertBanner";
+import PotentialClientTrackerApi from "../../helper/api";
+import AlertBanner from "../../components/AlertBanner";
 import AddClientField from "./AddClientField";
 import errMapping from "../../helper/errorMsg";
 

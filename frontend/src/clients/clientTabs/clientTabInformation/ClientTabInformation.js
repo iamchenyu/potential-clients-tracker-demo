@@ -1,10 +1,10 @@
 import * as React from "react";
 import { Button, DialogActions, Box, DialogContent } from "@mui/material";
-import PotentialClientTrackerApi from "../../../api";
+import PotentialClientTrackerApi from "../../../helper/api";
 import DialogTitle from "@mui/material/DialogTitle";
 import ClientFormField from "./ClientFormField";
-import DeleteConfirmation from "../../../DeleteConfirmation";
-import AppContext from "../../../AppContext";
+import DeleteConfirmation from "../../../components/DeleteConfirmation";
+import AppContext from "../../../helper/AppContext";
 import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarInformation = ({ client, getErr }) => {
@@ -40,14 +40,23 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const dobOriginal = document.querySelector("#dob").value.split("/");
+    const icdOriginal = document.querySelector("#icd").value.split("/");
+    const dobUTC = new Date(
+      Date.UTC(+dobOriginal[2], +dobOriginal[0] - 1, +dobOriginal[1])
+    );
+    const icdUTC = new Date(
+      Date.UTC(+icdOriginal[2], +icdOriginal[0] - 1, +icdOriginal[1])
+    );
     const editClientFormData = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
-      dob: data.get("dob"),
+      dob: dobUTC,
       gender: data.get("gender"),
       marital: data.get("marital"),
       contact: data.get("contact"),
       relationship: data.get("relationship"),
+      initialContactDate: icdUTC,
       email: data.get("email"),
       phone: data.get("phone"),
       address: data.get("address"),
@@ -56,9 +65,10 @@ const ClientDetailTabBarInformation = ({ client, getErr }) => {
       physician: data.get("physician"),
       diagnosis: data.get("diagnosis"),
       notes: data.get("notes"),
-      daycare: data.get("daycare") === "true" ? true : false,
+      daycare: data.get("daycare"),
       medicaid: data.get("medicaid"),
     };
+    console.log(editClientFormData);
 
     try {
       await PotentialClientTrackerApi.updateClient(

@@ -7,8 +7,8 @@ import {
   Container,
   Link,
 } from "@mui/material";
-import PotentialClientTrackerApi from "../api";
-import AlertBanner from "../AlertBanner";
+import PotentialClientTrackerApi from "../helper/api";
+import AlertBanner from "../components/AlertBanner";
 import { useParams } from "react-router-dom";
 import AlertDialog from "./AlertDialog";
 import { Link as RouterLink } from "react-router-dom";
@@ -28,10 +28,9 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await PotentialClientTrackerApi.resetPassword(token, {
+      await PotentialClientTrackerApi.resetPassword(token, {
         password,
       });
-      console.log(data);
       setOpen(true);
     } catch (e) {
       console.log(e);

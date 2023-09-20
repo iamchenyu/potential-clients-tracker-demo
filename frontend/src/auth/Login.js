@@ -13,9 +13,9 @@ import {
   Container,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import logo from "../logo.png";
-import PotentialClientTrackerApi from "../api";
-import AlertBanner from "../AlertBanner";
+import logo from "../photos/logo.png";
+import PotentialClientTrackerApi from "../helper/api";
+import AlertBanner from "../components/AlertBanner";
 import Copyright from "../helper/copyright";
 import errMapping from "../helper/errorMsg";
 

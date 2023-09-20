@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
-import AppContext from "../../../AppContext";
-import PotentialClientTrackerApi from "../../../api";
+import AppContext from "../../../helper/AppContext";
+import PotentialClientTrackerApi from "../../../helper/api";
 import errMapping from "../../../helper/errorMsg";
 
 const ClientDetailTabBarUpdatesForm = ({ client, dummy, setDummy, setErr }) => {

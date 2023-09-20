@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import PotentialClientTrackerApi from "../../../api";
+import PotentialClientTrackerApi from "../../../helper/api";
 import List from "@mui/material/List";
 
 import ClientDetailTabBarUpdatesList from "./ClientDetailTabBarUpdatesList";
 import { Box, DialogTitle, ListItem } from "@mui/material";
 import ClientDetailTabBarUpdatesForm from "./ClientDetailTabBarUpdatesForm";
-import AlertBanner from "../../../AlertBanner";
+import AlertBanner from "../../../components/AlertBanner";
 import SignpostOutlinedIcon from "@mui/icons-material/SignpostOutlined";
 
 const ClientDetailTabBarUpdates = ({ client }) => {

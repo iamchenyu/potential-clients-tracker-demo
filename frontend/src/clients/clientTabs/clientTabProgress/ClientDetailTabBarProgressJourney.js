@@ -11,6 +11,7 @@ import Check from "@mui/icons-material/Check";
 import StepConnector, {
   stepConnectorClasses,
 } from "@mui/material/StepConnector";
+import dayjs from "dayjs";
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -93,6 +94,12 @@ const ClientDetailTabBarProgressJourney = ({
   clientDetails,
   statusMapping,
 }) => {
+  var utc = require("dayjs/plugin/utc");
+  var timezone = require("dayjs/plugin/timezone"); // dependent on utc plugin
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  const tzToDisplay = "America/New_York";
+
   return (
     <>
       <DialogTitle sx={{ fontSize: "1.5rem", marginTop: "15px" }}>
@@ -110,7 +117,15 @@ const ClientDetailTabBarProgressJourney = ({
                 <StepLabel StepIconComponent={QontoStepIcon}>
                   {statusMapping[date.status_id]}
                   <br />
-                  <em>({moment(date.update_date).fromNow()})</em>
+                  <em>
+                    (
+                    {moment(
+                      dayjs
+                        .tz(date.update_date, tzToDisplay)
+                        .format("MM/DD/YYYY")
+                    ).fromNow()}
+                    )
+                  </em>
                 </StepLabel>
               </Step>
             ))}

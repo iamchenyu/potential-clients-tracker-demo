@@ -6,7 +6,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { DialogTitle, Box } from "@mui/material";
-import PotentialClientTrackerApi from "../../../api";
+import PotentialClientTrackerApi from "../../../helper/api";
 import errMapping from "../../../helper/errorMsg";
 
 export default function ClientDetailTabBarProgressAddDatesForm({

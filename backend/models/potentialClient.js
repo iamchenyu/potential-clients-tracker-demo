@@ -78,6 +78,7 @@ class PotentialClient {
       firstName: "first_name",
       lastName: "last_name",
       channel: "from_channel",
+      initialContactDate: "initial_contact_date",
     };
 
     if (Object.keys(data).length === 0)
@@ -120,6 +121,7 @@ class PotentialClient {
       firstName: "first_name",
       lastName: "last_name",
       channel: "from_channel",
+      initialContactDate: "initial_contact_date",
     });
 
     const result = await db.query(
@@ -133,6 +135,9 @@ class PotentialClient {
     );
 
     let client = result.rows[0];
+    if (Object.keys(data).includes("initialContactDate")) {
+      await this.updateInitialStatusDate(client.id, data.initialContactDate);
+    }
 
     const status_updated_dates = await this.getStatusDates(id);
 
@@ -222,6 +227,30 @@ class PotentialClient {
 
   //   return client_status.rows[0];
   // }
+
+  static async updateInitialStatusDate(clientId, updateDate) {
+    const result = await db.query(
+      `
+      SELECT * FROM clients_statuses WHERE client_id=$1
+      `,
+      [clientId]
+    );
+
+    const original = result.rows[0];
+    if (!original) throw new NotFoundError("No such client/status");
+
+    const client_status = await db.query(
+      `
+      UPDATE clients_statuses
+      SET update_date = $1
+      WHERE client_id = $2 AND status_id=1
+      RETURNING *
+        `,
+      [updateDate, clientId]
+    );
+
+    return client_status.rows[0];
+  }
 
   static async deleteStatusDate(id) {
     const client_status = await db.query(
