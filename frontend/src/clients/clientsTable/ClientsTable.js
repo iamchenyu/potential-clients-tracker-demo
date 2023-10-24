@@ -174,7 +174,7 @@ export default function ClientsTable() {
     const { data } = await PotentialClientTrackerApi.searchClient({
       searchTerm: e.target.value,
     });
-    setSearchClients(data.client);
+    setSearchClients(data.clients);
   };
 
   return (

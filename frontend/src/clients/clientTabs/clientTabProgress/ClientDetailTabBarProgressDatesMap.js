@@ -10,7 +10,6 @@ import {
   Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import moment from "moment";
 import $ from "jquery";
 import PotentialClientTrackerApi from "../../../helper/api";
 import ClientDetailTabBarProgressAddDatesForm from "./ClientDetailTabBarProgressAddDatesForm";
