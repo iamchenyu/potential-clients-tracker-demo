@@ -2,18 +2,46 @@
 
 const express = require("express");
 const jsonschema = require("jsonschema");
+const moment = require("moment");
 const { BadRequestError } = require("../ExpressError");
 const { ensureLoggedIn, ensureEditorOrAdmin } = require("../middleware/auth");
 const PotentialClient = require("../models/potentialClient");
 const User = require("../models/user");
 const clientSchema = require("../schemas/clientSchema.json");
 const { sendNewClientEmail } = require("../helper/sendEmail");
+const isArchived = require("../helper/isArchived");
 
 const router = express.Router();
 
 router.get("/", ensureLoggedIn, async (req, res, next) => {
   try {
-    const clients = await PotentialClient.getAllClients();
+    const clientsRaw = await PotentialClient.getAllClients();
+    // based on the client's status to decide if still count days
+    const clients = await Promise.all(
+      clientsRaw.map(async function (client) {
+        if (isArchived(client)) {
+          const statusDates = await PotentialClient.getStatusDates(client.id);
+          // get the client's enrollment date or not-to-proceed date
+          // and stop counting
+          const endStatus = statusDates.filter(
+            (s) => s.status_id === 14 || s.status_id === 15
+          );
+          return {
+            ...client,
+            days: moment(endStatus[0].update_date).diff(
+              moment(client.created_at),
+              "days"
+            ),
+          };
+        } else {
+          return {
+            ...client,
+            days: moment(new Date()).diff(moment(client.created_at), "days"),
+          };
+        }
+      })
+    );
+
     return res.json({ clients });
   } catch (e) {
     return next(e);
