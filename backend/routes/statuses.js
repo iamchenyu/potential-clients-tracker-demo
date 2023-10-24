@@ -66,13 +66,21 @@ route.delete("/:id", ensureEditorOrAdmin, async (req, res, next) => {
     }
 
     const result = await PotentialClient.deleteStatusDate(req.params.id);
+    const client = await PotentialClient.getClient(result.client_id);
 
-    const user = await PotentialClient.getClient(result.client_id);
+    // if delete "Enrolled" status
+    if (result.status_id == 14) {
+      await PotentialClient.update(client.id, {
+        is_enrolled: false,
+      });
+    }
 
-    if (user.current_status == result.status_id) {
-      await PotentialClient.update(user.id, {
+    // if the deleted status is the client's latest status
+    // then we roll back his latest status to the last one
+    if (client.current_status == result.status_id) {
+      await PotentialClient.update(client.id, {
         current_status:
-          user.status_updated_dates[user.status_updated_dates.length - 1]
+          client.status_updated_dates[client.status_updated_dates.length - 1]
             .status_id,
       });
     }
