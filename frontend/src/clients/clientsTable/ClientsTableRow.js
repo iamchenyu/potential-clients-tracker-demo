@@ -2,7 +2,6 @@ import * as React from "react";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import ClientDetail from "../clientTabs/ClientDetail";
-import moment from "moment";
 import "./ClientsTableRow.css";
 
 export default function ClientsTableRow({ client }) {
@@ -24,9 +23,7 @@ export default function ClientsTableRow({ client }) {
         </TableCell>
         <TableCell align="center">{client.current_status_name}</TableCell>
         <TableCell align="center">{client.from_channel_name}</TableCell>
-        <TableCell align="center">
-          {moment(new Date()).diff(moment(client.created_at), "days")}
-        </TableCell>
+        <TableCell align="center">{client.days}</TableCell>
         <TableCell align="center">
           {client.is_enrolled === false ? "No" : "Yes"}
         </TableCell>
