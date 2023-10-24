@@ -71,7 +71,7 @@ const headCells = [
     label: "Channel",
   },
   {
-    id: "created_at",
+    id: "days",
     label: "Days",
   },
   {
@@ -130,8 +130,8 @@ EnhancedTableHead.propTypes = {
 };
 
 export default function ClientsTable() {
-  const [order, setOrder] = React.useState("desc");
-  const [orderBy, setOrderBy] = React.useState("created_at");
+  const [order, setOrder] = React.useState("asc");
+  const [orderBy, setOrderBy] = React.useState("days");
   const [open, setOpen] = React.useState(false);
   const [err, setErr] = React.useState(false);
   const [page, setPage] = React.useState(0);
