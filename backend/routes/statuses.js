@@ -68,9 +68,9 @@ route.delete("/:id", ensureEditorOrAdmin, async (req, res, next) => {
   try {
     const id = await PotentialClient.findStatusId(+req.params.id);
 
-    // if (id.status_id == 1) {
-    //   throw new BadRequestError("Can't delete the start date");
-    // }
+    if (id.status_id == 1) {
+      throw new BadRequestError("Can't delete the start date");
+    }
 
     const result = await PotentialClient.deleteStatusDate(req.params.id);
     const client = await PotentialClient.getClient(result.client_id);

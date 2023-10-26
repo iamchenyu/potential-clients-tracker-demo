@@ -8,6 +8,7 @@ const errMapping = {
     "New client information cannot be empty",
   "Can't add another date. Please delete the existing one first.":
     "Can't add another date. Please delete the existing one first.",
+  "Can't delete the start date": "Can't delete the start date",
   "Not Editor/Admin": "Not Editor/Admin",
   "No Updated Data": "No Updated Data",
   "Invalid link or time expired": "Invalid link or time expired",
