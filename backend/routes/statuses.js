@@ -16,24 +16,31 @@ route.post("/", ensureEditorOrAdmin, async (req, res, next) => {
       throw new BadRequestError(errs);
     }
 
-    if (req.body.statusId == 1) {
-      throw new BadRequestError("Can't change the start date");
+    // check if the client's status list to see if there's status 1, 14, 15
+    const clientStatuses = await PotentialClient.getStatusDates(
+      req.body.clientId
+    );
+    if (
+      (req.body.statusId === 1 &&
+        clientStatuses.find((s) => s.status_id === 1)) ||
+      (req.body.statusId === 14 &&
+        clientStatuses.find((s) => s.status_id === 14)) ||
+      (req.body.statusId === 15 &&
+        clientStatuses.find((s) => s.status_id === 15))
+    ) {
+      throw new BadRequestError(
+        "Can't add another date. Please delete the existing one first."
+      );
     }
 
+    // add status to the client's list
     const result = await PotentialClient.addStatusDate(req.body);
 
     // update client's current status
-    let client;
-    if (req.body.statusId == 14) {
-      client = await PotentialClient.update(result.client_id, {
-        current_status: result.status_id,
-        is_enrolled: true,
-      });
-    } else {
-      client = await PotentialClient.update(result.client_id, {
-        current_status: result.status_id,
-      });
-    }
+    const client = await PotentialClient.update(result.client_id, {
+      current_status: result.status_id,
+      is_enrolled: req.body.statusId == 14,
+    });
 
     return res.json({ client });
   } catch (e) {
@@ -61,9 +68,9 @@ route.delete("/:id", ensureEditorOrAdmin, async (req, res, next) => {
   try {
     const id = await PotentialClient.findStatusId(+req.params.id);
 
-    if (id.status_id == 1) {
-      throw new BadRequestError("Can't delete the start date");
-    }
+    // if (id.status_id == 1) {
+    //   throw new BadRequestError("Can't delete the start date");
+    // }
 
     const result = await PotentialClient.deleteStatusDate(req.params.id);
     const client = await PotentialClient.getClient(result.client_id);

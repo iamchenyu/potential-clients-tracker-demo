@@ -127,7 +127,7 @@ const ClientDetailTabBarProgressDatesMap = ({
       {err ? (
         <AlertBanner
           severity="error"
-          title="Delete Failed"
+          title="Failed"
           msg={`${err} - please try again`}
           setErr={setErr}
         />
